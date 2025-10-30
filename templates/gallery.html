@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+<section>
+    <div class="gallery">
+    {% for image in images %}
+        <div class="image"><img src="{% static image %}" alt="An image"></div>
+    {% endfor %}
+    <div class="lightbox" id="lightbox">
+        <span id="close">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+</div>
+</section>
+<script src="{% static 'js/gallery.js' %}"></script>

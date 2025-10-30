@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/testimonials.css' %}">
+<section class="testimonials-block">
+    <div class="testimonials">
+        {% for testimonial in testimonials %}
+            <div class="testimonial">
+                <img src="{% static testimonial.photo %}" alt="">
+                <p>{{ testimonial.text }}</p>
+                <span>- {{ testimonial.author }}</spans>
+            </div>
+        {% endfor %}
+    </div>
+    <div aria-hidden class="testimonials">
+        {% for testimonial in testimonials %}
+            <div class="testimonial">
+                <img src="{% static testimonial.photo %}" alt="">
+                <p>{{ testimonial.text }}</p>
+                <span>- {{ testimonial.author }}</spans>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+<script src="{% static 'js/testimonials.js' %}"></script>

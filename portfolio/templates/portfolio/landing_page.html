@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/landing_page.css' %}">
+{% endblock %}
+
+{% block title %}Luis Mendez Photography{% endblock %}
+
+{% block content %}
+
+{% include 'gallery.html' %}
+
+<section class="about-me-section">
+    <div class="about-me">
+        <div class="about-info">
+            <h2>ABOUT ME</h2>
+            <p>
+            Hey! I am Luis. I am a Venezuelan Native and currently living in <b>Kissimmee, Florida</b>. I moved to the United States with many dreams and goals to reach.
+            <br><br>
+            Shortly after, I became a Disney Photographer where I was introduced to the art of taking <b>story-telling images</b>.
+            <br><br>
+            Today, I work with industry leaders at Disney’s Fine Art Photography, ESPN GameDay Sports and my own photography brand, <b>Luis Mendez Photography</b>.
+            </p>
+        </div>
+        <div class="about-img"><img src="{% static aboutMeImg %}" alt="Luis Mendez Headshot"></div>
+    </div>
+</section>
+
+{% include 'testimonials.html' %}
+
+{% endblock %}

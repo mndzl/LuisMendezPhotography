@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'portfolio',
+    'livereload'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'luismendezphoto.urls'
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'luismendezphoto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,21 +120,10 @@ USE_TZ = True
 
 
 # URL to access static files
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
-# Folder where collected static files will be stored when running collectstatic
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Additional directories where Django will look for static files
 STATICFILES_DIRS = [
-    # Example if you have a global static folder (optional)
-    BASE_DIR / "static",
-]
-
-# This is default — it tells Django to also look inside each app’s "static/" folder
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    os.path.join(BASE_DIR, 'static')
 ]
 
 # Default primary key field type
