@@ -1,0 +1,14 @@
+.socials-block{
+    display: flex;
+    justify-content: center;
+    margin:1em 0;
+}
+.socials{
+    display: flex;
+    gap:2em;
+}
+.socials a{
+    font-size: 2em;
+    color:#fff;
+    text-decoration: none;
+}
