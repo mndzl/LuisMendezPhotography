@@ -1,0 +1,15 @@
+.navbar{
+    width: 250px;
+    align-items: start;
+}
+.navbar-container{
+    width: 100%;
+    padding:.5em;
+}
+.navbar-brand{
+    padding:0 !important ;
+    height: 4em;
+}
+.navbar-brand img{
+    width: 3em;
+}
