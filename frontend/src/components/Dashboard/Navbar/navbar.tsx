@@ -14,7 +14,7 @@ function Navbar() {
           </a>
         </div>
 
-        <ul className="navbar-nav mt-2">
+        <ul className="navbar-nav pages mt-2">
           <li className="nav-item">
             <a className="nav-link active" aria-current="page" href="#sessions">
               <i className="fa-solid fa-calendar me-2"></i>

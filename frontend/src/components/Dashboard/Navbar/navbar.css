@@ -1,14 +1,18 @@
 .navbar{
-    width: 250px;
+    width: 300px;
     align-items: start;
 }
 .navbar-container{
     width: 100%;
     padding:.5em;
 }
+.pages{
+    padding-left:1em !important;
+}
 .navbar-brand{
     padding:0 !important ;
     height: 4em;
+    padding-left: 1em !important;
 }
 .navbar-brand img{
     width: 3em;
