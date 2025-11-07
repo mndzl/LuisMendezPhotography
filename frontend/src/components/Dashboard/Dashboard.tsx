@@ -43,10 +43,10 @@ function Dashboard() {
         key={session.id}
         className="card border rounded-3 overflow-hidden shadow-sm"
       >
+        <h6 className="card-date card-header bg-dark text-white">
+          {format(new Date(session.date), "MMM d, yyyy")}
+        </h6>
         <div className="card-body">
-          <h6 className="card-date text-body-secondary">
-            {format(new Date(session.date), "MMM d, yyyy")}
-          </h6>
           <h5 className="card-title">{session.title}</h5>
           <h6 className="card-location card-subtitle mb-2 text-body-secondary">
             {session.location}
@@ -89,14 +89,16 @@ function Dashboard() {
           <div className="sessions-upcoming">
             <h2>Upcoming Sessions</h2>
 
-            <div className="sessions-upcoming-cards card-group d-flex flex-wrap gap-3 w-100">
+            <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
+              {renderSessions()}
+              {renderSessions()}
               {renderSessions()}
             </div>
           </div>
 
-          <div className="card-group sessions-previous">
+          <div className="sessions-previous">
             <h3>Previous Sessions</h3>
-            <div className="card-group-empty w-100">
+            <div className=" w-100">
               <p className="opacity-50 fs-5">No sessions</p>
             </div>
           </div>
