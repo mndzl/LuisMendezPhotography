@@ -97,75 +97,8 @@ function Dashboard() {
 
           <div className="card-group sessions-previous">
             <h3>Previous Sessions</h3>
-
-            <div className="sessions-upcoming-cards card-group d-flex gap-3 flex-wrap flex-wrap-sm justify-content-center mx-auto w-100">
-              <div className="card border rounded-3 overflow-hidden">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top shadow-sm">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is some example on where the card is gonna show up!
-                  </p>
-                </div>
-              </div>
-
-              <div className="card border rounded-3 overflow-hidden">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top shadow-sm">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is some example on where the card is gonna show up!
-                  </p>
-                </div>
-              </div>
-
-              <div className="card border rounded-3 overflow-hidden">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top shadow-sm">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is some example on where the card is gonna show up!
-                  </p>
-                </div>
-              </div>
-
-              <div className="card border rounded-3 overflow-hidden">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top shadow-sm">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is some example on where the card is gonna show up!
-                  </p>
-                </div>
-              </div>
+            <div className="card-group-empty w-100">
+              <p className="opacity-50 fs-5">No sessions</p>
             </div>
           </div>
         </main>
