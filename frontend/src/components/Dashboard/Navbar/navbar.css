@@ -1,6 +1,6 @@
 .navbar{
     width: 300px;
-    z-index: 3;
+    z-index: 5;
     align-items: start;
     transition: transform 0.3s ease;
 }
@@ -21,10 +21,6 @@
 }
 .nav-collapsed{
     transform: translateX(-100%);
-}
-.dashboard-nav{
-    height:5em;
-    padding: 0 !important;
 }
 .nav-profile{
     margin-right: 2em;

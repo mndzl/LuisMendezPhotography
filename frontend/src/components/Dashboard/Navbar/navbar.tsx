@@ -13,7 +13,7 @@ function Navbar() {
       <div
         className={`${
           window.innerWidth > 900 ? "d-none" : ""
-        } navbar-toggle bg-light border-end justify-content-center position-absolute d-flex align-items-center`}
+        } navbar-toggle bg-light justify-content-center position-absolute d-flex align-items-center`}
       >
         <i
           className="fa-solid fa-bars mx-4"
