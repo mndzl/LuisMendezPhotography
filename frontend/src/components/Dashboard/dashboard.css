@@ -11,6 +11,15 @@
 .main-container main::-webkit-scrollbar {
   display: none;            /* Chrome, Safari, Edge */
 }
+.nav-profile{
+    margin-right: 2em;
+    cursor: pointer;
+    transition: opacity .3s ease;
+    opacity:75%;
+}
+.nav-profile:hover{
+    opacity: 1;
+}
 
 .dashboard main{
     width: 80%;

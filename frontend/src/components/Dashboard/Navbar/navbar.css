@@ -22,10 +22,7 @@
 .nav-collapsed{
     transform: translateX(-100%);
 }
-.nav-profile{
-    margin-right: 2em;
-    cursor: pointer;
-}
+
 
 
 @media (max-width: 900px){

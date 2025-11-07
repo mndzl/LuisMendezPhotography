@@ -85,6 +85,7 @@ function Dashboard() {
         {/* Heading */}
         <div className="w-100 dashboard-nav container-fluid text-bg-light border-bottom d-flex justify-content-end align-items-center">
           <div className="nav-profile">
+            <small className="me-2">Luis Mendez</small>
             <i className="fa-solid fa-user"></i>
           </div>
         </div>
@@ -95,56 +96,6 @@ function Dashboard() {
 
             <div className="sessions-upcoming-cards card-group d-flex flex-wrap gap-3 w-100">
               {renderSessions()}
-
-              <div className="card border rounded-3 overflow-hidden shadow-sm">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top">
-                  <h5 className="card-title">This is the dummy tittle</h5>
-                  <h6 className="card-subtitle mb-2 text-body-secondary">
-                    Feb 12, 2003
-                  </h6>
-                  <p className="card-text">This is a dummy description</p>
-                </div>
-              </div>
-
-              <div className="card border rounded-3 overflow-hidden shadow-sm">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top">
-                  <h5 className="card-title">This is the dummy tittle</h5>
-                  <h6 className="card-subtitle mb-2 text-body-secondary">
-                    Feb 12, 2003
-                  </h6>
-                  <p className="card-text">This is a dummy description</p>
-                </div>
-              </div>
-              <div className="card border rounded-3 overflow-hidden shadow-sm">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top">
-                  <h5 className="card-title">This is the dummy tittle</h5>
-                  <h6 className="card-subtitle mb-2 text-body-secondary">
-                    Feb 12, 2003
-                  </h6>
-                  <p className="card-text">This is a dummy description</p>
-                </div>
-              </div>
             </div>
           </div>
 
