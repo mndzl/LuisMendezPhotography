@@ -1,18 +1,25 @@
 import "./navbar.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Navbar() {
   const [collapsed, setCollapsed] = useState<boolean>(window.innerWidth < 900);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 900);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 900);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <nav
       className={`navbar vh-100 bg-body-tertiary flex-column border ${
-        collapsed ? "nav-collapsed" : ""
+        collapsed && isMobile ? "nav-collapsed" : ""
       } `}
     >
       <div
         className={`${
-          window.innerWidth > 900 ? "d-none" : ""
+          isMobile ? "" : "d-none"
         } navbar-toggle bg-light justify-content-center position-absolute d-flex align-items-center`}
       >
         <i
