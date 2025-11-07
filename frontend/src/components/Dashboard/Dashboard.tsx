@@ -43,19 +43,14 @@ function Dashboard() {
         key={session.id}
         className="card border rounded-3 overflow-hidden shadow-sm"
       >
-        <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-          <img
-            src="/static/sports.jpeg"
-            alt="project image"
-            className="img-fluid object-fit-fill"
-          />
-        </div>
-        <div className="card-body border-top">
-          <h5 className="card-title">{session.title}</h5>
-          <h6 className="card-subtitle mb-2 text-body-secondary">
+        <div className="card-body">
+          <h6 className="card-date text-body-secondary">
             {format(new Date(session.date), "MMM d, yyyy")}
           </h6>
-          <p className="card-text">{session.description}</p>
+          <h5 className="card-title">{session.title}</h5>
+          <h6 className="card-location card-subtitle mb-2 text-body-secondary">
+            {session.location}
+          </h6>
         </div>
       </div>
     ));
