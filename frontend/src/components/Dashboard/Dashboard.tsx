@@ -5,10 +5,80 @@
     - view status of last session (images backed up, editing, purchases available, closed)
     - view clients with information
 */
+import { useEffect, useState } from "react";
+import { format } from "date-fns";
 import Navbar from "./Navbar/navbar.tsx";
 import "./dashboard.css";
 
 function Dashboard() {
+  const [loading, setLoading] = useState(true);
+  const [sessions, setSessions] = useState<any[]>([]);
+
+  function renderSessions() {
+    if (loading)
+      return (
+        <div className="card" aria-hidden="true">
+          <div className="card-img-top h-50"></div>
+
+          <div className="card-body">
+            <h5 className="card-title placeholder-glow">
+              <span className="placeholder col-6"></span>
+            </h5>
+            <p className="card-text placeholder-glow">
+              <span className="placeholder col-7"></span>
+              <span className="placeholder col-4"></span>
+              <span className="placeholder col-4"></span>
+              <span className="placeholder col-6"></span>
+              <span className="placeholder col-8"></span>
+            </p>
+          </div>
+        </div>
+      );
+
+    if (sessions.length == 0)
+      return <p className="opacity-50 fs-5">No sessions</p>;
+
+    return sessions.map((session) => (
+      <div
+        key={session.id}
+        className="card border rounded-3 overflow-hidden shadow-sm"
+      >
+        <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
+          {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
+          <img
+            src="/static/sports.jpeg"
+            alt="project image"
+            className="img-fluid object-fit-fill"
+          />
+        </div>
+        <div className="card-body border-top">
+          <h5 className="card-title">{session.title}</h5>
+          <h6 className="card-subtitle mb-2 text-body-secondary">
+            {format(new Date(session.date), "MMM d, yyyy")}
+          </h6>
+          <p className="card-text">{session.description}</p>
+        </div>
+      </div>
+    ));
+  }
+
+  useEffect(() => {
+    async function fetchSessions() {
+      try {
+        const api_url = "http://localhost:8000/api";
+        const res = await fetch(api_url);
+        const data = await res.json();
+        setSessions(data);
+        console.log(data);
+        setLoading(false);
+      } catch (err) {
+        console.log("There was an error loading the sessions." + err);
+      }
+    }
+
+    fetchSessions();
+  }, []);
+
   return (
     <div className="main-container d-flex vh-100 vw-100">
       {/* <Navbar /> */}
@@ -25,73 +95,7 @@ function Dashboard() {
             <h2>Upcoming Sessions</h2>
 
             <div className="sessions-upcoming-cards card-group d-flex gap-3 flex-wrap flex-wrap-sm justify-content-center mx-auto w-100">
-              <div className="card border rounded-3 overflow-hidden">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top shadow-sm">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is some example on where the card is gonna show up!
-                  </p>
-                </div>
-              </div>
-
-              <div className="card border rounded-3 overflow-hidden">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top shadow-sm">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is some example on where the card is gonna show up!
-                  </p>
-                </div>
-              </div>
-
-              <div className="card border rounded-3 overflow-hidden">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top shadow-sm">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is some example on where the card is gonna show up!
-                  </p>
-                </div>
-              </div>
-
-              <div className="card border rounded-3 overflow-hidden">
-                <div className="card-img-top d-flex justify-content-center align-items-center overflow-hidden">
-                  {/* <i className="fa-regular fa-images fs-5 text-color-primary"></i> */}
-                  <img
-                    src="/static/sports.jpeg"
-                    alt="project image"
-                    className="img-fluid object-fit-fill"
-                  />
-                </div>
-                <div className="card-body border-top shadow-sm">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is some example on where the card is gonna show up!
-                  </p>
-                </div>
-              </div>
+              {renderSessions()}
             </div>
           </div>
 
