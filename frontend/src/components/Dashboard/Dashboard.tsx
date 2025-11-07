@@ -83,8 +83,10 @@ function Dashboard() {
       <Navbar />
       <div className="dashboard w-100 h-100">
         {/* Heading */}
-        <div className="w-100 dashboard-heading container-fluid text-bg-light border-bottom d-flex align-items-center">
-          <h1 className="dashboard-title">Sessions</h1>
+        <div className="w-100 dashboard-nav container-fluid text-bg-light border-bottom d-flex justify-content-end align-items-center">
+          <div className="nav-profile">
+            <i className="fa-solid fa-user"></i>
+          </div>
         </div>
         {/* Main content */}
         <main className="w-80 mx-auto">

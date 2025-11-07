@@ -22,9 +22,13 @@
 .nav-collapsed{
     transform: translateX(-100%);
 }
-.dashboard-heading{
+.dashboard-nav{
     height:5em;
     padding: 0 !important;
+}
+.nav-profile{
+    margin-right: 2em;
+    cursor: pointer;
 }
 
 
