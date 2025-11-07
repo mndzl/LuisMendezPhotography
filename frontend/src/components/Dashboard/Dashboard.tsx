@@ -89,11 +89,11 @@ function Dashboard() {
           </div>
         </div>
         {/* Main content */}
-        <main className="w-80 mx-auto">
+        <main className="w-80 mx-auto justify-content-center">
           <div className="sessions-upcoming">
             <h2>Upcoming Sessions</h2>
 
-            <div className="sessions-upcoming-cards card-group d-flex gap-3 flex-wrap flex-wrap-sm justify-content-center mx-auto w-100">
+            <div className="sessions-upcoming-cards card-group d-flex gap-3 flex-wrap flex-wrap-sm mx-auto w-100">
               {renderSessions()}
 
               <div className="card border rounded-3 overflow-hidden shadow-sm">
