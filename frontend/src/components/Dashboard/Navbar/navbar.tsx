@@ -1,8 +1,28 @@
 import "./navbar.css";
+import { useState } from "react";
 
 function Navbar() {
+  const [collapsed, setCollapsed] = useState<boolean>(window.innerWidth < 900);
+
   return (
-    <nav className="navbar vh-100 bg-body-tertiary flex-column border">
+    <nav
+      className={`navbar vh-100 bg-body-tertiary flex-column border ${
+        collapsed ? "nav-collapsed" : ""
+      } `}
+    >
+      <div
+        className={`${
+          window.innerWidth > 900 ? "d-none" : ""
+        } navbar-toggle bg-light border-end justify-content-center position-absolute d-flex align-items-center`}
+      >
+        <i
+          className="fa-solid fa-bars mx-4"
+          style={{ cursor: "pointer" }}
+          onClick={() => setCollapsed(!collapsed)}
+        ></i>
+      </div>
+
+      {/* Side navbar */}
       <div className="navbar-container">
         <div className="navbar-brand w-100 border-bottom">
           <a href="#">

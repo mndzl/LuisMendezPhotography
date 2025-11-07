@@ -1,13 +1,15 @@
 .navbar{
     width: 300px;
+    z-index: 3;
     align-items: start;
+    transition: transform 0.3s ease;
 }
 .navbar-container{
     width: 100%;
     padding:.5em;
 }
 .pages{
-    padding-left:1em !important;
+    margin-left:1em;
 }
 .navbar-brand{
     padding:0 !important ;
@@ -16,4 +18,24 @@
 }
 .navbar-brand img{
     width: 3em;
+}
+.nav-collapsed{
+    transform: translateX(-100%);
+}
+.dashboard-heading{
+    height:5em;
+    padding: 0 !important;
+}
+
+
+@media (max-width: 900px){
+    .navbar{
+        position: absolute !important;
+    }
+    .navbar-toggle{
+        top:0;
+        height: 4.9em;
+        width: 4.9em;
+        left:300px;
+    }
 }
