@@ -7,7 +7,6 @@
 */
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import Navbar from "./Navbar/navbar.tsx";
 import "./dashboard.css";
 
 function Dashboard() {
@@ -88,9 +87,8 @@ function Dashboard() {
   }
 
   return (
-    <div className="main-container d-flex">
-      <Navbar />
-      <div className="dashboard w-100">
+    <div className="main-container w-100">
+      <div className="dashboard">
         {/* Heading */}
         <div className="w-100 dashboard-nav container-fluid text-bg-light border-bottom d-flex justify-content-end align-items-center">
           <div className="nav-profile">

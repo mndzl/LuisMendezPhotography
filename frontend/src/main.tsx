@@ -1,15 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import Dashboard from "./components/Dashboard/Dashboard.tsx";
-import "bootstrap/dist/css/bootstrap.css";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-      </Routes>
-    </HashRouter>
+    <App />
   </StrictMode>
 );

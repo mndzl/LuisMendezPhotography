@@ -34,7 +34,7 @@ function Navbar() {
         <div className="navbar-brand w-100 border-bottom">
           <a href="#">
             <img
-              src="/static/logo.png"
+              src="logo.png"
               className="img-fluid"
               alt="Luis Mendez Photography"
             ></img>
