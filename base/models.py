@@ -25,7 +25,6 @@ class Category(models.Model):
 class Session(models.Model):
     title = models.CharField(max_length=200, blank=False)
     location = models.CharField(max_length=200)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=False)
     description = models.TextField(max_length=1000)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, blank=False)
@@ -34,6 +33,14 @@ class Session(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.date.strftime('%b %d')})"
+
+
+class Model(models.Model):
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.client.first_name} in {self.session.title}"
 
 # class Image(models.Model):
 #     url = models.ImageField()
