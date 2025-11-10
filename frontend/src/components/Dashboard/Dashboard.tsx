@@ -88,19 +88,16 @@ function Dashboard() {
   }
 
   return (
-    <div className="main-container w-100">
-      <div className="dashboard">
-        {/* Heading */}
-        <div className="w-100 dashboard-nav container-fluid text-bg-light border-bottom d-flex justify-content-end align-items-center"></div>
+    <div className="main-container w-100 pt-5">
+      <div className="dashboard w-100">
         {/* Main content */}
         <main className="mx-auto">
-          <Link to="/newsession" className="btn btn-outline-primary mt-4">
+          <Link to="/newsession" className="btn btn-outline-primary">
             <i className="fa-solid fa-plus"></i>
             Add Session
           </Link>
           <div className="sessions-upcoming">
             <h2>Upcoming Sessions</h2>
-
             <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
               {renderSessions()}
             </div>
