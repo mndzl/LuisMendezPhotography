@@ -32,8 +32,8 @@
 }
 .dashboard .card{
     cursor: pointer;
-    min-width: 200px;
-    max-width: 300px;
+    min-width: 25%;
+    max-width: 50%;
 }
 @media (max-width:640px) {
   .dashboard .card{
