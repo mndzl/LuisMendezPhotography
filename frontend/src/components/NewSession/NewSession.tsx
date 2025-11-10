@@ -1,5 +1,9 @@
 function AddSession() {
-  return <h1>This is the add a session page</h1>;
+  return (
+    <div className="add-session w-100">
+      <h1>New Session page</h1>
+    </div>
+  );
 }
 
 export default AddSession;

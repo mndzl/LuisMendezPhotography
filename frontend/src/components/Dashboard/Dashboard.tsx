@@ -8,6 +8,7 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import "./dashboard.css";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -98,12 +99,10 @@ function Dashboard() {
         </div>
         {/* Main content */}
         <main className="mx-auto">
-          <div className="add-session">
-            <a className="btn btn-outline-primary mt-4" href="/newsession">
-              <i className="fa-solid fa-plus"></i>
-              Add Session
-            </a>
-          </div>
+          <Link to="/newsession" className="btn btn-outline-primary mt-4">
+            <i className="fa-solid fa-plus"></i>
+            Add Session
+          </Link>
           <div className="sessions-upcoming">
             <h2>Upcoming Sessions</h2>
 
