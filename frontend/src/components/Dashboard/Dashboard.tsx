@@ -72,20 +72,20 @@ function Dashboard() {
   }
 
   useEffect(() => {
-    async function fetchSessions() {
-      try {
-        const api_url = "http://localhost:8000/api";
-        const res = await fetch(api_url);
-        const data = await res.json();
-        setSessions(data);
-        setLoading(false);
-      } catch (err) {
-        console.log("There was an error loading the sessions." + err);
-      }
-    }
-
     fetchSessions();
   }, []);
+
+  async function fetchSessions() {
+    try {
+      const api_url = "/api";
+      const res = await fetch(api_url);
+      const data = await res.json();
+      setSessions(data);
+      setLoading(false);
+    } catch (err) {
+      console.log("There was an error loading the sessions." + err);
+    }
+  }
 
   return (
     <div className="main-container d-flex">
@@ -100,6 +100,12 @@ function Dashboard() {
         </div>
         {/* Main content */}
         <main className="mx-auto">
+          <div className="add-session">
+            <a className="btn btn-outline-primary mt-4" href="/newsession">
+              <i className="fa-solid fa-plus"></i>
+              Add Session
+            </a>
+          </div>
           <div className="sessions-upcoming">
             <h2>Upcoming Sessions</h2>
 
