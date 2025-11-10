@@ -21,7 +21,7 @@ function Navbar() {
       <div
         className={`${
           isMobile ? "" : "d-none"
-        } navbar-toggle bg-light justify-content-center position-absolute d-flex align-items-center`}
+        } navbar-toggle justify-content-center position-absolute d-flex align-items-center`}
       >
         <i
           className="fa-solid fa-bars mx-4"

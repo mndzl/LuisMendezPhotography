@@ -88,28 +88,24 @@ function Dashboard() {
   }
 
   return (
-    <div className="main-container w-100 pt-5">
-      <div className="dashboard w-100">
-        {/* Main content */}
-        <main className="mx-auto">
-          <Link to="/newsession" className="btn btn-outline-primary">
-            <i className="fa-solid fa-plus"></i>
-            Add Session
-          </Link>
-          <div className="sessions-upcoming">
-            <h2>Upcoming Sessions</h2>
-            <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
-              {renderSessions()}
-            </div>
-          </div>
+    <div className="dashboard w-100">
+      {/* Main content */}
+      <Link to="/newsession" className="btn btn-outline-primary">
+        <i className="fa-solid fa-plus"></i>
+        Add Session
+      </Link>
+      <div className="sessions-upcoming">
+        <h2>Upcoming Sessions</h2>
+        <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
+          {renderSessions()}
+        </div>
+      </div>
 
-          <div className="sessions-previous">
-            <h3>Previous Sessions</h3>
-            <div className=" w-100">
-              <p className="opacity-50 fs-5">No sessions</p>
-            </div>
-          </div>
-        </main>
+      <div className="sessions-previous">
+        <h3>Previous Sessions</h3>
+        <div className=" w-100">
+          <p className="opacity-50 fs-5">No sessions</p>
+        </div>
       </div>
     </div>
   );
