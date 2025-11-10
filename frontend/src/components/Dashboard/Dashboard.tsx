@@ -14,6 +14,14 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [sessions, setSessions] = useState<any[]>([]);
 
+  function colorCategory(categoryName: string): string {
+    const colors: Record<string, string> = {
+      Weddings: "text-info-emphasis",
+    };
+
+    return colors[categoryName];
+  }
+
   function renderSessions() {
     if (loading)
       return (
@@ -51,7 +59,11 @@ function Dashboard() {
           <h6 className="card-location card-subtitle mb-2 text-body-secondary">
             {session.location}
           </h6>
-          <h6 className="card-category card-subtitle mb-2 text-info-emphasis">
+          <h6
+            className={`card-category card-subtitle mb-2 ${colorCategory(
+              session.category
+            )}`}
+          >
             {session.category}
           </h6>
         </div>
