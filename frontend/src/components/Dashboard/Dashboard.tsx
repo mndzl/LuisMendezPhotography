@@ -17,7 +17,7 @@ function Dashboard() {
   function renderSessions() {
     if (loading)
       return (
-        <div className="card" aria-hidden="true">
+        <div className="card" style={{ cursor: "default" }} aria-hidden="true">
           <div className="card-img-top h-50"></div>
 
           <div className="card-body">
@@ -51,6 +51,9 @@ function Dashboard() {
           <h6 className="card-location card-subtitle mb-2 text-body-secondary">
             {session.location}
           </h6>
+          <h6 className="card-category card-subtitle mb-2 text-info-emphasis">
+            {session.category}
+          </h6>
         </div>
       </div>
     ));
@@ -63,7 +66,6 @@ function Dashboard() {
         const res = await fetch(api_url);
         const data = await res.json();
         setSessions(data);
-        console.log(data);
         setLoading(false);
       } catch (err) {
         console.log("There was an error loading the sessions." + err);
@@ -90,8 +92,6 @@ function Dashboard() {
             <h2>Upcoming Sessions</h2>
 
             <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
-              {renderSessions()}
-              {renderSessions()}
               {renderSessions()}
             </div>
           </div>
