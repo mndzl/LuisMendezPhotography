@@ -91,12 +91,7 @@ function Dashboard() {
     <div className="main-container w-100">
       <div className="dashboard">
         {/* Heading */}
-        <div className="w-100 dashboard-nav container-fluid text-bg-light border-bottom d-flex justify-content-end align-items-center">
-          <div className="nav-profile">
-            <small className="me-2">Luis Mendez</small>
-            <i className="fa-solid fa-user"></i>
-          </div>
-        </div>
+        <div className="w-100 dashboard-nav container-fluid text-bg-light border-bottom d-flex justify-content-end align-items-center"></div>
         {/* Main content */}
         <main className="mx-auto">
           <Link to="/newsession" className="btn btn-outline-primary mt-4">

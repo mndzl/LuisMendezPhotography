@@ -44,6 +44,10 @@ function Navbar() {
 
         <ul className="navbar-nav pages mt-2">
           <li className="nav-item">
+            <Link to="/" className="nav-link" aria-current="page">
+              <i className="fa-solid fa-user me-2"></i>
+              Profile
+            </Link>
             <Link to="/" className="nav-link active" aria-current="page">
               <i className="fa-solid fa-calendar me-2"></i>
               Sessions
