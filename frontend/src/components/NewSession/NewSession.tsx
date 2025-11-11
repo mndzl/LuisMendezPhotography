@@ -9,11 +9,31 @@
 import { useState } from "react";
 
 function AddSession() {
+  const [session, setSession] = useState({
+    title: "",
+    description: "",
+    address: "",
+    client: "",
+    type: "",
+    date: "",
+  });
+
+  const handleChange = (event: { target: any }) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setSession((values) => ({ ...values, [name]: value }));
+  };
+
+  const createSession = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log(session);
+  };
+
   return (
     <div className="add-session w-100">
       <h1>Create New Session</h1>
       <div className="session-intake-form">
-        <form>
+        <form onSubmit={createSession}>
           <div className="mb-3">
             <label htmlFor="sessionTitle">Title</label>
             <input
@@ -21,7 +41,8 @@ function AddSession() {
               className="form-control"
               id="sessionTitle"
               required
-              name="sessionTitle"
+              name="title"
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
@@ -29,52 +50,56 @@ function AddSession() {
             <textarea
               className="form-control"
               id="sessionDescription"
-              name="sessionDescription"
+              name="description"
+              onChange={handleChange}
               required
             />
           </div>
           <div className="mb-3">
             <label htmlFor="sessionAddress">Address</label>
-            <input type="text" className="form-control" id="sessionAddress" />
+            <input
+              type="text"
+              className="form-control"
+              id="sessionAddress"
+              onChange={handleChange}
+              name="address"
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="sessionClient">Client</label>
-            <input
-              className="form-control"
-              list="sessionClientOptions"
+            <select
               id="sessionClient"
-              name="sessionClient"
-              placeholder="Start typing..."
-            />
-            <datalist id="sessionClientOptions">
+              className="form-control"
+              name="client"
+              onChange={handleChange}
+            >
               <option value="1">Client #1</option>
               <option value="2">Client #2</option>
               <option value="3">Client #3</option>
               <option value="4">Client #4</option>
-            </datalist>
+            </select>
           </div>
           <div className="mb-3">
             <label htmlFor="sessionType">Type of Session</label>
-            <input
-              className="form-control"
-              list="sessionTypeOptions"
+            <select
               id="sessionType"
-              name="sessionType"
-              placeholder="Start typing..."
-            />
-            <datalist id="sessionTypeOptions">
+              className="form-control"
+              name="type"
+              onChange={handleChange}
+            >
               <option value="1">Category #1</option>
               <option value="2">Category #2</option>
               <option value="3">Category #3</option>
               <option value="4">Category #4</option>
-            </datalist>
+            </select>
           </div>
           <div className="mb-3">
             <label htmlFor="sessionDate">Date</label>
             <input
               type="date"
               id="sessionDate"
-              name="sessionDate"
+              name="date"
+              onChange={handleChange}
               className="form-control"
               required
             />
