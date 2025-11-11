@@ -12,9 +12,9 @@ function AddSession() {
   const [session, setSession] = useState({
     title: "",
     description: "",
-    address: "",
+    location: "",
     client: "",
-    type: "",
+    category: "",
     date: "",
   });
 
@@ -24,9 +24,27 @@ function AddSession() {
     setSession((values) => ({ ...values, [name]: value }));
   };
 
-  const createSession = (e: { preventDefault: () => void }) => {
+  const createSession = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(session);
+    const endpoint = "/api/newsession/";
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(session),
+      });
+
+      if (!response.ok) throw new Error("Request Failed!");
+
+      const result = await response.json();
+      console.log(result);
+      alert("Session Created.");
+    } catch (err) {
+      console.log(err);
+      alert("There was an error creating the session.");
+    }
   };
 
   return (
@@ -62,7 +80,7 @@ function AddSession() {
               className="form-control"
               id="sessionAddress"
               onChange={handleChange}
-              name="address"
+              name="location"
             />
           </div>
           <div className="mb-3">
@@ -71,6 +89,7 @@ function AddSession() {
               id="sessionClient"
               className="form-control"
               name="client"
+              value={session.client}
               onChange={handleChange}
             >
               <option value="1">Client #1</option>
@@ -84,7 +103,8 @@ function AddSession() {
             <select
               id="sessionType"
               className="form-control"
-              name="type"
+              name="category"
+              value={session.category}
               onChange={handleChange}
             >
               <option value="1">Category #1</option>
