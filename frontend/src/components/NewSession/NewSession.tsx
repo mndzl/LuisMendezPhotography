@@ -52,7 +52,7 @@ function AddSession() {
     <div className="add-session w-100">
       <Link
         to="/"
-        className="link-secondary fs-4 me-5"
+        className="link-secondary fs-4 d-block mb-3"
         style={{ textDecoration: "None" }}
       >
         <i className="fa-solid fa-angle-left"></i>
