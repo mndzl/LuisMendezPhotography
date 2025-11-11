@@ -61,10 +61,10 @@ function Dashboard() {
           </h6>
           <h6
             className={`card-category card-subtitle mb-2 ${colorCategory(
-              session.category
+              session.category.name
             )}`}
           >
-            {session.category}
+            {session.category.name}
           </h6>
         </div>
       </div>
@@ -77,7 +77,7 @@ function Dashboard() {
 
   async function fetchSessions() {
     try {
-      const api_url = "/api";
+      const api_url = "/api/getsessions";
       const res = await fetch(api_url);
       const data = await res.json();
       setSessions(data);
