@@ -17,7 +17,7 @@ main::-webkit-scrollbar {
   display: none;            /* Chrome, Safari, Edge */
 }
 
-@media (max-width:640px) {
+@media (max-width:900px) {
     main{
         width: 80%;
     }
