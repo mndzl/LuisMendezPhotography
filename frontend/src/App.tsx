@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
 import NewSession from "./components/NewSession/NewSession";
+import ViewSession from "./components/ViewSession/ViewSession";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
 // luismendez
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/newsession" element={<NewSession />} />
+            <Route path="/session/:sessionID" element={<ViewSession />} />
             <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>
         </main>

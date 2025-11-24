@@ -51,22 +51,27 @@ function Dashboard() {
         key={session.id}
         className="card border rounded-3 overflow-hidden shadow-sm"
       >
-        <h6 className="card-date card-header bg-dark text-white">
-          {format(new Date(session.date), "MMM d, yyyy")}
-        </h6>
-        <div className="card-body">
-          <h5 className="card-title">{session.title}</h5>
-          <h6 className="card-location card-subtitle mb-2 text-body-secondary">
-            {session.location}
+        <Link
+          to={`/session/${session.id}`}
+          className="text-decoration-none text-dark"
+        >
+          <h6 className="card-date card-header bg-dark text-white">
+            {format(new Date(session.date), "MMM d, yyyy")}
           </h6>
-          <h6
-            className={`card-category card-subtitle mb-2 ${colorCategory(
-              session.category_detail.name
-            )}`}
-          >
-            {session.category_detail.name}
-          </h6>
-        </div>
+          <div className="card-body">
+            <h5 className="card-title">{session.title}</h5>
+            <h6 className="card-location card-subtitle mb-2 text-body-secondary">
+              {session.location}
+            </h6>
+            <h6
+              className={`card-category card-subtitle mb-2 ${colorCategory(
+                session.category_detail.name
+              )}`}
+            >
+              {session.category_detail.name}
+            </h6>
+          </div>
+        </Link>
       </div>
     ));
   }

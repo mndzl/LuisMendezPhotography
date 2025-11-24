@@ -7,7 +7,7 @@
 // # cover = models.ForeignKey(Image, on_delete=models.SET_NULL, null=True)
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Backlink from "../Backlink";
 
 function AddSession() {
   const [session, setSession] = useState({
@@ -84,14 +84,7 @@ function AddSession() {
 
   return (
     <div className="add-session w-100">
-      <Link
-        to="/"
-        className="link-secondary fs-4 d-block mb-3"
-        style={{ textDecoration: "None" }}
-      >
-        <i className="fa-solid fa-angle-left"></i>
-        Back
-      </Link>
+      <Backlink />
       <h1>Create New Session</h1>
       <div className="session-intake-form">
         <form onSubmit={createSession}>
