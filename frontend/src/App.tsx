@@ -5,6 +5,8 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import NewSession from "./components/NewSession/NewSession";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
+// luismendez
+
 function App() {
   return (
     <BrowserRouter>

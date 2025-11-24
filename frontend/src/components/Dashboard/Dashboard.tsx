@@ -61,10 +61,10 @@ function Dashboard() {
           </h6>
           <h6
             className={`card-category card-subtitle mb-2 ${colorCategory(
-              session.category.name
+              session.category_detail.name
             )}`}
           >
-            {session.category.name}
+            {session.category_detail.name}
           </h6>
         </div>
       </div>

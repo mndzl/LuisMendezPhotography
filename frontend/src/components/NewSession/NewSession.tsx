@@ -14,21 +14,23 @@ function AddSession() {
     title: "",
     description: "",
     location: "",
-    client: "",
-    category: "",
+    client: -1,
+    category: -1,
     date: "",
   });
   const [clientsList, setClientsList] = useState([]);
-
+  const [categoriesList, setCategoriesList] = useState([]);
   const handleChange = (event: { target: any }) => {
     const name = event.target.name;
     const value = event.target.value;
+    console.log(name, value);
     setSession((values) => ({ ...values, [name]: value }));
   };
 
   const createSession = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const endpoint = "/api/newsession/";
+    console.log(JSON.stringify(session));
     try {
       const response = await fetch(endpoint, {
         method: "POST",
@@ -57,13 +59,27 @@ function AddSession() {
         const data = await response.json();
 
         setClientsList(data);
-        console.log(data);
+        setSession((values) => ({ ...values, ["client"]: data[0]["id"] })); // set default client as first in list
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    const getCategories = async () => {
+      try {
+        const endpoint = "/api/getcategories/";
+        const response = await fetch(endpoint);
+        const data = await response.json();
+
+        setCategoriesList(data);
+        setSession((values) => ({ ...values, ["category"]: data[0]["id"] })); // set default category as first in list
       } catch (e) {
         console.log(e);
       }
     };
 
     getClients();
+    getCategories();
   }, []);
 
   return (
@@ -135,10 +151,11 @@ function AddSession() {
               value={session.category}
               onChange={handleChange}
             >
-              <option value="1">Category #1</option>
-              <option value="2">Category #2</option>
-              <option value="3">Category #3</option>
-              <option value="4">Category #4</option>
+              {categoriesList.map((category) => (
+                <option key={category["id"]} value={category["id"]}>
+                  {category["name"]}
+                </option>
+              ))}
             </select>
           </div>
           <div className="mb-3">
