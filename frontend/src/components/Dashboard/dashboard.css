@@ -16,7 +16,7 @@
     min-width: 25%;
     max-width: 50%;
 }
-@media (max-width:640px) {
+@media (max-width:900px) {
   .dashboard .card{
     min-width: 100% !important;
   }
