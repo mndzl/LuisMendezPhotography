@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from base.models import Session
-from .serializers import SessionSerializer
+from base.models import Session, Client
+from .serializers import SessionSerializer, ClientSerializer
 from rest_framework import generics
 
 
@@ -11,3 +11,8 @@ class SessionsListCreate(generics.ListCreateAPIView):
 
     def __init__(self):
         print(self.queryset)
+
+
+class ClientListCreate(generics.ListCreateAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer

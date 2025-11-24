@@ -6,7 +6,7 @@
 // date = models.DateTimeField()
 // # cover = models.ForeignKey(Image, on_delete=models.SET_NULL, null=True)
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function AddSession() {
@@ -18,6 +18,7 @@ function AddSession() {
     category: "",
     date: "",
   });
+  const [clientsList, setClientsList] = useState([]);
 
   const handleChange = (event: { target: any }) => {
     const name = event.target.name;
@@ -37,7 +38,7 @@ function AddSession() {
         body: JSON.stringify(session),
       });
 
-      if (!response.ok) throw new Error("Request Failed!");
+      if (!response.ok) throw new Error("Coult not create session.");
 
       const result = await response.json();
       console.log(result);
@@ -47,6 +48,23 @@ function AddSession() {
       alert("There was an error creating the session.");
     }
   };
+
+  useEffect(() => {
+    const getClients = async () => {
+      try {
+        const endpoint = "/api/getclients/";
+        const response = await fetch(endpoint);
+        const data = await response.json();
+
+        setClientsList(data);
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getClients();
+  }, []);
 
   return (
     <div className="add-session w-100">
@@ -101,10 +119,11 @@ function AddSession() {
               value={session.client}
               onChange={handleChange}
             >
-              <option value="1">Client #1</option>
-              <option value="2">Client #2</option>
-              <option value="3">Client #3</option>
-              <option value="4">Client #4</option>
+              {clientsList.map((client) => (
+                <option key={client["id"]} value={client["id"]}>
+                  {client["first_name"] + " " + client["last_name"]}
+                </option>
+              ))}
             </select>
           </div>
           <div className="mb-3">
