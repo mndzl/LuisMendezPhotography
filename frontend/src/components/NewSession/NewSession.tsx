@@ -20,13 +20,14 @@ function AddSession() {
   });
   const [clientsList, setClientsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
+
   const handleChange = (event: { target: any }) => {
     const name = event.target.name;
     const value = event.target.value;
-    console.log(name, value);
     setSession((values) => ({ ...values, [name]: value }));
   };
 
+  // TODO: Add functionality to assign client to session (create model relation)
   const createSession = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const endpoint = "/api/newsession/";

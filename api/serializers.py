@@ -11,7 +11,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class SessionSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(  # Return this when POST. Accepts primary key as int
-        queryset=Category.objects.all(), write_only=True)
+        queryset=Category.objects.all())
 
     category_detail = CategorySerializer(  # Return this when GET
         source="category", read_only=True)

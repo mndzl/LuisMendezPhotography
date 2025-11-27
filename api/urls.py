@@ -8,6 +8,8 @@ urlpatterns = [
     path('getcategories/', views.CategoryListCreate.as_view(), name="getCategories"),
     path('getsession/<int:pk>/', views.SessionRUD.as_view(),
          name="getSession"),
-    path('getmodels/<int:sessionID>/', views.ModelList.as_view(),
+    path('getmodels/<int:sessionID>/', views.ModelListCreate.as_view(),
          name="getModels"),
+    path('updatesession/<int:pk>/', views.SessionRUD.as_view(),
+         name="updateSession"),
 ]

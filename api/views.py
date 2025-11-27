@@ -25,7 +25,8 @@ class SessionRUD(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SessionSerializer
 
 
-class ModelList(generics.ListAPIView):
+class ModelListCreate(generics.ListCreateAPIView):
+    queryset = Model.objects.select_related("client", "session")
     serializer_class = ModelSerializer
 
     def get_queryset(self):
