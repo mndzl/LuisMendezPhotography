@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import Backlink from "../Backlink";
+import Alert from "../Alert";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 
@@ -29,6 +30,11 @@ function ViewSession() {
       id: -1,
     },
   ]);
+  const [alertBox, setAlertBox] = useState({
+    active: false,
+    type: "",
+    content: "",
+  });
 
   function colorCategory(categoryName: string): string {
     const colors: Record<string, string> = {
@@ -66,6 +72,22 @@ function ViewSession() {
     }
   };
 
+  // TODO: Make this a global thing somehow
+  const createAlert = (type: string, content: string) => {
+    setAlertBox({
+      active: true,
+      type: type,
+      content: content,
+    });
+    setTimeout(() => {
+      setAlertBox({
+        active: false,
+        type: "",
+        content: "",
+      });
+    }, 3000);
+  };
+
   const updateSession = async () => {
     setEditing(false);
     const endpoint = `/api/updatesession/${sessionID}/`;
@@ -79,13 +101,11 @@ function ViewSession() {
         body: JSON.stringify(session),
       });
 
-      if (!response.ok) throw new Error("Coult not update session.");
-
       fetchData();
-      alert("Session Updated.");
+      createAlert("success", "Session Updated");
     } catch (err) {
       console.log(err);
-      alert("There was an error updating the session.");
+      createAlert("error", "Could not update the session. Try Again.");
     }
   };
 
@@ -101,7 +121,10 @@ function ViewSession() {
   }, []);
 
   return (
-    <div className="viewsession-container position-relative">
+    <div className="viewsession-container position-relative h-100">
+      {alertBox.active && (
+        <Alert type={alertBox.type} content={alertBox.content} />
+      )}
       <Backlink />
       {loading ? (
         <div className="d-flex justify-content-center">
@@ -177,6 +200,8 @@ function ViewSession() {
                   </small>
                 </div>
               ))}
+              {/* TODO: Date changing */}
+
               {/* Date */}
               <small className="date">
                 <i className="fa-solid fa-calendar me-1"></i>
@@ -189,37 +214,45 @@ function ViewSession() {
 
           <div className="session-description mb-4">
             <h3 className="mb-1 text-wrap">Description</h3>
-            <textarea
-              value={session.description}
-              className={`form-control bg-white ${
-                editing ? "ps-3 border" : "ps-0 border-0"
-              }`}
-              name="description"
-              style={{
-                height: editing ? "5em" : "0",
-                overflow: "hidden",
-                resize: "none",
-              }}
-              disabled={!editing}
-            />
+            {editing ? (
+              <textarea
+                value={session.description}
+                className={`form-control bg-white ${
+                  editing ? "ps-3 border form-control-md" : "ps-0 border-0"
+                }`}
+                name="description"
+                style={{
+                  overflow: "hidden",
+                  resize: "none",
+                }}
+                disabled={!editing}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>{session.description}</p>
+            )}
           </div>
 
           {/* Location */}
           <div className="session-location">
             <h5 className="mb-1">Location</h5>
-            <textarea
-              value={session.location}
-              className={`form-control bg-white ${
-                editing ? "ps-3 border form-control-md" : "ps-0 border-0"
-              }`}
-              name="location"
-              style={{
-                height: editing ? "5em" : "0",
-                overflow: "hidden",
-                resize: "none",
-              }}
-              disabled={!editing}
-            />
+            {editing ? (
+              <textarea
+                value={session.location}
+                className={`form-control bg-white ${
+                  editing ? "ps-3 border form-control-md" : "ps-0 border-0"
+                }`}
+                name="location"
+                style={{
+                  overflow: "hidden",
+                  resize: "none",
+                }}
+                onChange={handleChange}
+                disabled={!editing}
+              />
+            ) : (
+              <p>{session.location}</p>
+            )}
           </div>
         </div>
       )}
