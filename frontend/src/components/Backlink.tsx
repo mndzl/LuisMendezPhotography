@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Backlink() {
   return (
-    <div>
+    <div className="backlink">
       <Link
         to="/"
         className="link-secondary fs-4 d-block mb-3"

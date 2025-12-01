@@ -26,8 +26,11 @@ function ViewSession() {
   ]);
   const [clients, setClients] = useState([
     {
-      name: "",
-      id: -1,
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone_number: "",
+      created_at: "",
     },
   ]);
   const [alertBox, setAlertBox] = useState({
@@ -64,7 +67,12 @@ function ViewSession() {
 
       setCategories(categoriesData);
 
-      // TODO: Functionality to change client/model
+      // // TODO: Functionality to change client/model
+      // const clientsEndpoint = `/api/getmodels/${sessionID}`;
+      // const clientsResponse = await fetch(clientsEndpoint);
+      // const clientsData = await clientsResponse.json();
+
+      // setClients(clientsData);
     } catch (e) {
       console.log(e);
     } finally {
@@ -143,13 +151,25 @@ function ViewSession() {
                 onClick={() => setEditing(true)}
               ></i>
             ) : (
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={updateSession}
-              >
-                Update
-              </button>
+              <div className="update-controls">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary me-1"
+                  onClick={() => {
+                    fetchData();
+                    setEditing(false);
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={updateSession}
+                >
+                  Update
+                </button>
+              </div>
             )}
           </div>
           {/* Category */}
@@ -191,6 +211,7 @@ function ViewSession() {
             )}
 
             {/* Models */}
+            {/* TODO: Model changing */}
             <div className="models-list">
               {models.map((model) => (
                 <div className="model" key={model.id}>
@@ -200,6 +221,7 @@ function ViewSession() {
                   </small>
                 </div>
               ))}
+
               {/* TODO: Date changing */}
 
               {/* Date */}
