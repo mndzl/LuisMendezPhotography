@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Navbar from "./components/Navbar/navbar";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Sessions from "./components/Sessions/Sessions";
 import NewSession from "./components/NewSession/NewSession";
 import ViewSession from "./components/ViewSession/ViewSession";
 import ViewClients from "./components/Clients/ViewClients";
@@ -16,7 +16,7 @@ function App() {
         <Navbar />
         <main className="w-80 mx-auto vh-100 overflow-y-scroll">
           <Routes>
-            <Route path="/sessions" element={<Dashboard />} />
+            <Route path="/sessions" element={<Sessions />} />
             <Route path="/clients" element={<ViewClients />} />
             <Route path="/newsession" element={<NewSession />} />
             <Route path="/sessions/:sessionID" element={<ViewSession />} />

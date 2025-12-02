@@ -7,7 +7,7 @@
 */
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import "./dashboard.css";
+import "./sessions.css";
 import { Link } from "react-router-dom";
 
 function Dashboard() {
