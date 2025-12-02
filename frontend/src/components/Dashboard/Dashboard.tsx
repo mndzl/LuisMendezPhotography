@@ -52,7 +52,7 @@ function Dashboard() {
         className="card border rounded-3 overflow-hidden shadow-sm"
       >
         <Link
-          to={`/session/${session.id}`}
+          to={`/sessions/${session.id}`}
           className="text-decoration-none text-dark"
         >
           <h6 className="card-date card-header bg-dark text-white">

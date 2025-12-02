@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 import { useEffect, useState } from "react";
 
@@ -6,10 +6,14 @@ function Navbar() {
   const [collapsed, setCollapsed] = useState<boolean>(window.innerWidth < 900);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 900);
 
+  // Get current page for active link highlighting
+  const location = useLocation();
+  const currentPage = location.pathname;
+
   useEffect(() => {
+    // Automatic Resizing
     const handleResize = () => setIsMobile(window.innerWidth < 900);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -33,7 +37,7 @@ function Navbar() {
       {/* Side navbar */}
       <div className="navbar-container">
         <div className="navbar-brand w-100 border-bottom">
-          <Link to="/">
+          <Link to="/sessions" onClick={() => setCollapsed(true)}>
             <img
               src="logo.png"
               className="img-fluid"
@@ -44,19 +48,42 @@ function Navbar() {
 
         <ul className="navbar-nav pages mt-2">
           <li className="nav-item">
-            <Link to="/" className="nav-link" aria-current="page">
-              <i className="fa-solid fa-user me-2"></i>
-              Profile
-            </Link>
-            <Link to="/" className="nav-link active" aria-current="page">
+            <Link
+              to="/sessions"
+              className={`nav-link ${
+                currentPage.includes("/sessions") ? "active" : ""
+              }`}
+              aria-current="page"
+              onClick={() => setCollapsed(true)}
+            >
               <i className="fa-solid fa-calendar me-2"></i>
               Sessions
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/" className="nav-link">
+            <Link
+              to="/clients"
+              className={`nav-link ${
+                currentPage.includes("/clients") ? "active" : ""
+              }`}
+              aria-current="page"
+              onClick={() => setCollapsed(true)}
+            >
               <i className="fa-regular fa-user me-2"></i>
               Clients
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/profile"
+              className={`nav-link ${
+                currentPage.includes("/profile") ? "active" : ""
+              }`}
+              aria-current="page"
+              onClick={() => setCollapsed(true)}
+            >
+              <i className="fa-solid fa-user me-2"></i>
+              Profile
             </Link>
           </li>
         </ul>

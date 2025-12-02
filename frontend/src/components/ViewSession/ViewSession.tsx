@@ -99,7 +99,6 @@ function ViewSession() {
   const updateSession = async () => {
     setEditing(false);
     const endpoint = `/api/updatesession/${sessionID}/`;
-    console.log(JSON.stringify(session));
     try {
       const response = await fetch(endpoint, {
         method: "PUT",
