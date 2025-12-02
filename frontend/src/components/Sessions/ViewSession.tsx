@@ -11,11 +11,15 @@ function ViewSession() {
     description: "",
     location: "",
     client: -1,
+    client_detail: {
+      first_name: "",
+      last_name: "",
+      email: "",
+    },
     category_detail: { name: "" },
     category: -1,
     date: "",
   });
-  const [models, setModels] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [categories, setCategories] = useState([
@@ -46,11 +50,7 @@ function ViewSession() {
 
       setSession(sessionData);
 
-      const modelsEndpoint = `/api/getmodels/${sessionID}`;
-      const modelsResponse = await fetch(modelsEndpoint);
-      const modelsData = await modelsResponse.json();
-
-      setModels(modelsData);
+      console.log(sessionData);
 
       const categoriesEndpoint = "/api/getcategories/";
       const categoriesResponse = await fetch(categoriesEndpoint);
@@ -200,28 +200,26 @@ function ViewSession() {
               <h1>{session.title}</h1>
             )}
 
-            {/* Models */}
-            {/* TODO: Model changing */}
-            <div className="models-list">
-              {models.map((model) => (
-                <div className="model" key={model.id}>
-                  <i className="fa-solid fa-user me-1"></i>
-                  <small className="d-inline">
-                    {`${model.client_detail.first_name} ${model.client_detail.last_name} (${model.client_detail.email})`}
-                  </small>
-                </div>
-              ))}
+            {/* Client */}
+            {/* TODO: Client changing */}
+            {session.client && (
+              <div className="client" key={session.client}>
+                <i className="fa-solid fa-user me-1"></i>
+                <small className="d-inline">
+                  {`${session.client_detail.first_name} ${session.client_detail.last_name} (${session.client_detail.email})`}
+                </small>
+              </div>
+            )}
 
-              {/* TODO: Date changing */}
+            {/* TODO: Date changing */}
 
-              {/* Date */}
-              <small className="date">
-                <i className="fa-solid fa-calendar me-1"></i>
-                {format(new Date(session.date), "MMM d, yyyy")}
-              </small>
-            </div>
-            <hr className="border opacity-50" />
+            {/* Date */}
+            <small className="date">
+              <i className="fa-solid fa-calendar me-1"></i>
+              {format(new Date(session.date), "MMM d, yyyy")}
+            </small>
           </div>
+          <hr className="border opacity-50" />
           {/* Description */}
 
           <div className="session-description mb-4">

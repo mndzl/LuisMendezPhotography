@@ -3,6 +3,12 @@ from rest_framework import serializers
 from base.models import Session, Category, Client, Model
 
 
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = '__all__'
+
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -16,14 +22,13 @@ class SessionSerializer(serializers.ModelSerializer):
     category_detail = CategorySerializer(  # Return this when GET
         source="category", read_only=True)
 
+    client = serializers.PrimaryKeyRelatedField(  # Return this when POST. Accepts primary key as int
+        queryset=Client.objects.all(), allow_null=True, required=False)
+    client_detail = ClientSerializer(  # Return this when GET
+        source="client", read_only=True, allow_null=True)
+
     class Meta:
         model = Session
-        fields = '__all__'
-
-
-class ClientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Client
         fields = '__all__'
 
 

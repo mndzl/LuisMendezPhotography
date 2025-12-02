@@ -29,6 +29,8 @@ class Session(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, blank=False)
     date = models.DateTimeField()
+    client = models.ForeignKey(
+        Client, on_delete=models.SET_NULL, null=True, blank=True)
     # cover = models.ForeignKey(Image, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

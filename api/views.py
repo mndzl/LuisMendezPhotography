@@ -6,7 +6,7 @@ from rest_framework import generics
 
 
 class SessionsListCreate(generics.ListCreateAPIView):
-    queryset = Session.objects.select_related("category")
+    queryset = Session.objects.select_related("category", "client")
     serializer_class = SessionSerializer
 
 
