@@ -1,9 +1,7 @@
-import React from "react";
-
 function ViewClients() {
   return (
     <div className="clients">
-      <h1>Clients!</h1>
+      <h1>Client Page</h1>
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 interface AlertProps {
   content: string;
   type: string;
