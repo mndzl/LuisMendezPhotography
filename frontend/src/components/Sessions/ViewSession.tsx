@@ -24,15 +24,6 @@ function ViewSession() {
       id: -1,
     },
   ]);
-  const [clients, setClients] = useState([
-    {
-      first_name: "",
-      last_name: "",
-      email: "",
-      phone_number: "",
-      created_at: "",
-    },
-  ]);
   const [alertBox, setAlertBox] = useState({
     active: false,
     type: "",
@@ -100,7 +91,7 @@ function ViewSession() {
     setEditing(false);
     const endpoint = `/api/updatesession/${sessionID}/`;
     try {
-      const response = await fetch(endpoint, {
+      await fetch(endpoint, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
