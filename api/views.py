@@ -6,17 +6,18 @@ from rest_framework import generics
 
 
 class SessionsListCreate(generics.ListCreateAPIView):
-    queryset = Session.objects.select_related("category", "client")
+    queryset = Session.objects.select_related(
+        "category", "client").order_by('-date')
     serializer_class = SessionSerializer
 
 
 class ClientListCreate(generics.ListCreateAPIView):
-    queryset = Client.objects.all()
+    queryset = Client.objects.all().order_by('first_name', 'last_name')
     serializer_class = ClientSerializer
 
 
 class CategoryListCreate(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by('name')
     serializer_class = CategorySerializer
 
 
