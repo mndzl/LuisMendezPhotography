@@ -22,7 +22,7 @@ function Dashboard() {
     return colors[categoryName];
   }
 
-  function renderSessions() {
+  function renderSessions(type: "upcoming" | "previous") {
     if (loading)
       return (
         <div className="card" style={{ cursor: "default" }} aria-hidden="true">
@@ -43,10 +43,22 @@ function Dashboard() {
         </div>
       );
 
-    if (sessions.length == 0)
+    let sessionList;
+    const currentDate = new Date();
+    if (type === "upcoming") {
+      sessionList = sessions.filter(
+        (session) => new Date(session.date) >= currentDate
+      );
+    } else {
+      sessionList = sessions.filter(
+        (session) => new Date(session.date) < currentDate
+      );
+    }
+
+    if (sessionList.length == 0)
       return <p className="opacity-50 fs-5">No sessions</p>;
 
-    return sessions.map((session) => (
+    return sessionList.map((session) => (
       <div
         key={session.id}
         className="card border rounded-3 overflow-hidden shadow-sm"
@@ -102,14 +114,14 @@ function Dashboard() {
       <div className="sessions-upcoming">
         <h2>Upcoming Sessions</h2>
         <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
-          {renderSessions()}
+          {renderSessions("upcoming")}
         </div>
       </div>
 
       <div className="sessions-previous">
         <h3>Previous Sessions</h3>
-        <div className=" w-100">
-          <p className="opacity-50 fs-5">No sessions</p>
+        <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
+          {renderSessions("previous")}
         </div>
       </div>
     </div>
