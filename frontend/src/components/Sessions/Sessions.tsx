@@ -110,12 +110,15 @@ function Sessions() {
   return (
     <div className="dashboard w-100">
       {/* Main content */}
-      <Link to="/newsession" className="btn btn-outline-primary">
-        <i className="fa-solid fa-plus"></i>
-        Add Session
-      </Link>
+      <div className="sessions-header d-flex justify-content-between align-items-center mb-4">
+        <h1>Sessions</h1>
+        <Link to="/newsession" className="btn btn-outline-primary">
+          <i className="fa-solid fa-plus"></i>
+          Add Session
+        </Link>
+      </div>
 
-      <div className="sessions-upcoming">
+      <div className="sessions-upcoming mb-5">
         <button
           style={{ cursor: "pointer" }}
           data-bs-toggle="collapse"
@@ -130,7 +133,7 @@ function Sessions() {
           ) : (
             <i className="fa-solid fa-chevron-down me-2"></i>
           )}
-          Upcoming Sessions
+          Upcoming
         </button>
         <div id="upcomingSessionsContent" className="collapse show">
           <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
@@ -138,7 +141,6 @@ function Sessions() {
           </div>
         </div>
       </div>
-
       <div className="sessions-previous">
         <button
           style={{ cursor: "pointer" }}
@@ -154,7 +156,7 @@ function Sessions() {
           ) : (
             <i className="fa-solid fa-chevron-down me-2"></i>
           )}
-          Previous Sessions
+          Previous
         </button>
 
         <div id="previousSessionsContent" className="collapse">
