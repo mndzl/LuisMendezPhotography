@@ -24,13 +24,13 @@ function AddSession() {
   const handleChange = (event: { target: any }) => {
     const name = event.target.name;
     const value = event.target.value;
-    if (name == "date") console.log(value);
     setSession((values) => ({ ...values, [name]: value }));
   };
 
   // TODO: Add functionality to assign client to session (create model relation)
   const createSession = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    session.date = new Date(session.date).toISOString();
     const endpoint = "/api/newsession/";
     console.log(JSON.stringify(session));
     try {
@@ -156,7 +156,7 @@ function AddSession() {
           <div className="mb-3">
             <label htmlFor="sessionDate">Date</label>
             <input
-              type="date"
+              type="datetime-local"
               id="sessionDate"
               name="date"
               onChange={handleChange}

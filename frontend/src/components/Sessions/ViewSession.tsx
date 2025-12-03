@@ -10,14 +10,14 @@ function ViewSession() {
     title: "",
     description: "",
     location: "",
-    client: -1,
+    client: "",
     client_detail: {
       first_name: "",
       last_name: "",
       email: "",
     },
     category_detail: { name: "" },
-    category: -1,
+    category: "",
     date: "",
   });
   const [loading, setLoading] = useState(true);
@@ -25,9 +25,18 @@ function ViewSession() {
   const [categories, setCategories] = useState([
     {
       name: "",
-      id: -1,
+      id: "",
     },
   ]);
+  const [clients, setClients] = useState([
+    {
+      first_name: "",
+      last_name: "",
+      email: "",
+      id: "",
+    },
+  ]);
+
   const [alertBox, setAlertBox] = useState({
     active: false,
     type: "",
@@ -50,20 +59,17 @@ function ViewSession() {
 
       setSession(sessionData);
 
-      console.log(sessionData);
-
       const categoriesEndpoint = "/api/getcategories/";
       const categoriesResponse = await fetch(categoriesEndpoint);
       const categoriesData = await categoriesResponse.json();
 
       setCategories(categoriesData);
 
-      // // TODO: Functionality to change client/model
-      // const clientsEndpoint = `/api/getmodels/${sessionID}`;
-      // const clientsResponse = await fetch(clientsEndpoint);
-      // const clientsData = await clientsResponse.json();
+      const clientsEndpoint = `/api/getclients/`;
+      const clientsResponse = await fetch(clientsEndpoint);
+      const clientsData = await clientsResponse.json();
 
-      // setClients(clientsData);
+      setClients(clientsData);
     } catch (e) {
       console.log(e);
     } finally {
@@ -165,12 +171,14 @@ function ViewSession() {
           {/* Category */}
           <div className="session-header">
             {editing ? (
-              <select name="category" id="category" onChange={handleChange}>
+              <select
+                name="category"
+                id="category"
+                defaultValue={session.category}
+                onChange={handleChange}
+              >
                 {categories.map((category) => (
-                  <option
-                    selected={category.name == session.category_detail.name}
-                    value={category.id}
-                  >
+                  <option value={category.id} key={category.id}>
                     {category.name}
                   </option>
                 ))}
@@ -201,14 +209,29 @@ function ViewSession() {
             )}
 
             {/* Client */}
-            {/* TODO: Client changing */}
-            {session.client && (
-              <div className="client" key={session.client}>
-                <i className="fa-solid fa-user me-1"></i>
-                <small className="d-inline">
-                  {`${session.client_detail.first_name} ${session.client_detail.last_name} (${session.client_detail.email})`}
-                </small>
-              </div>
+            {editing ? (
+              <select
+                name="client"
+                id="client"
+                defaultValue={session.client}
+                onChange={handleChange}
+              >
+                {!session.client && <option>Add a client</option>}
+                {clients.map((client) => (
+                  <option value={client.id} key={client.id}>
+                    {`${client.first_name} ${client.last_name}`}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              session.client && (
+                <div className="client" key={session.client}>
+                  <i className="fa-solid fa-user me-1"></i>
+                  <small className="d-inline">
+                    {`${session.client_detail.first_name} ${session.client_detail.last_name}`}
+                  </small>
+                </div>
+              )
             )}
 
             {/* TODO: Date changing */}
@@ -216,7 +239,7 @@ function ViewSession() {
             {/* Date */}
             <small className="date">
               <i className="fa-solid fa-calendar me-1"></i>
-              {format(new Date(session.date), "MMM d, yyyy")}
+              {format(new Date(session.date), "MMM d, yyyy - h:mm aa")}
             </small>
           </div>
           <hr className="border opacity-50" />
