@@ -239,13 +239,24 @@ function ViewSession() {
               )
             )}
 
-            {/* TODO: Date changing */}
-
             {/* Date */}
-            <small className="date">
-              <i className="fa-solid fa-calendar me-1"></i>
-              {format(new Date(session.date), "MMM d, yyyy - h:mm aa")}
-            </small>
+            {editing ? (
+              <div className="date-editing">
+                <i className="fa-solid fa-calendar me-1"></i>
+                <input
+                  type="datetime-local"
+                  name="date"
+                  id="date"
+                  value={format(new Date(session.date), "yyyy-MM-dd'T'HH:mm")}
+                  onChange={handleChange}
+                />
+              </div>
+            ) : (
+              <small className="date">
+                <i className="fa-solid fa-calendar me-1"></i>
+                {format(new Date(session.date), "MMM d, yyyy - h:mm aa")}
+              </small>
+            )}
           </div>
           <hr className="border opacity-50" />
           {/* Description */}
@@ -270,7 +281,6 @@ function ViewSession() {
               <p>{session.description}</p>
             )}
           </div>
-
           {/* Location */}
           <div className="session-location">
             <h5 className="mb-1">Location</h5>
