@@ -5,7 +5,7 @@ function Backlink() {
     <div className="backlink">
       <Link
         to="/"
-        className="link-secondary fs-4 d-block mb-3"
+        className="link-secondary fs-4 d-inline-block mb-3"
         style={{ textDecoration: "None" }}
       >
         <i className="fa-solid fa-angle-left"></i>

@@ -10,9 +10,11 @@ import { format } from "date-fns";
 import "./sessions.css";
 import { Link } from "react-router-dom";
 
-function Dashboard() {
+function Sessions() {
   const [loading, setLoading] = useState(true);
   const [sessions, setSessions] = useState<any[]>([]);
+  const [collapsedUpcoming, setCollapsedUpcoming] = useState(false);
+  const [collapsedPrevious, setCollapsedPrevious] = useState(true);
 
   function colorCategory(categoryName: string): string {
     const colors: Record<string, string> = {
@@ -82,6 +84,7 @@ function Dashboard() {
             >
               {session.category_detail.name}
             </h6>
+            {/* <span className="badge text-bg-primary rounded-pill">MINI</span> */}
           </div>
         </Link>
       </div>
@@ -111,21 +114,57 @@ function Dashboard() {
         <i className="fa-solid fa-plus"></i>
         Add Session
       </Link>
+
       <div className="sessions-upcoming">
-        <h2>Upcoming Sessions</h2>
-        <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
-          {renderSessions("upcoming")}
+        <button
+          style={{ cursor: "pointer" }}
+          data-bs-toggle="collapse"
+          data-bs-target="#upcomingSessionsContent"
+          aria-controls="upcomingSessionsContent"
+          aria-expanded="true"
+          className="btn btn-outline-none fs-3"
+          onClick={() => setCollapsedUpcoming(!collapsedUpcoming)}
+        >
+          {collapsedUpcoming ? (
+            <i className="fa-solid fa-chevron-up me-2"></i>
+          ) : (
+            <i className="fa-solid fa-chevron-down me-2"></i>
+          )}
+          Upcoming Sessions
+        </button>
+        <div id="upcomingSessionsContent" className="collapse show">
+          <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
+            {renderSessions("upcoming")}
+          </div>
         </div>
       </div>
 
       <div className="sessions-previous">
-        <h3>Previous Sessions</h3>
-        <div className="sessions-upcoming-cards d-flex flex-wrap gap-3">
-          {renderSessions("previous")}
+        <button
+          style={{ cursor: "pointer" }}
+          data-bs-toggle="collapse"
+          data-bs-target="#previousSessionsContent"
+          aria-expanded="false"
+          aria-controls="previousSessionsContent"
+          className="btn btn-outline-none fs-3"
+          onClick={() => setCollapsedPrevious(!collapsedPrevious)}
+        >
+          {collapsedPrevious ? (
+            <i className="fa-solid fa-chevron-up me-2"></i>
+          ) : (
+            <i className="fa-solid fa-chevron-down me-2"></i>
+          )}
+          Previous Sessions
+        </button>
+
+        <div id="previousSessionsContent" className="collapse">
+          <div className="sessions-upcoming-cards d-flex flex-wrap gap-3 mt-2">
+            {renderSessions("previous")}
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default Dashboard;
+export default Sessions;

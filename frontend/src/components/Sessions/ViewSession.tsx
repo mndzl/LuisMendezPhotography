@@ -210,19 +210,24 @@ function ViewSession() {
 
             {/* Client */}
             {editing ? (
-              <select
-                name="client"
-                id="client"
-                defaultValue={session.client}
-                onChange={handleChange}
-              >
-                {!session.client && <option>Add a client</option>}
-                {clients.map((client) => (
-                  <option value={client.id} key={client.id}>
-                    {`${client.first_name} ${client.last_name}`}
-                  </option>
-                ))}
-              </select>
+              <div className="client-editing">
+                <i className="fa-solid fa-user me-1"></i>
+
+                <select
+                  name="client"
+                  id="client"
+                  defaultValue={session.client}
+                  onChange={handleChange}
+                  className="d-inline-block"
+                >
+                  {!session.client && <option>Add a client</option>}
+                  {clients.map((client) => (
+                    <option value={client.id} key={client.id}>
+                      {`${client.first_name} ${client.last_name}`}
+                    </option>
+                  ))}
+                </select>
+              </div>
             ) : (
               session.client && (
                 <div className="client" key={session.client}>
