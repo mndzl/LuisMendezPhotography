@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Alert from "../Alert";
 
 function Clients() {
   const [clients, setClients] = useState<any[]>([

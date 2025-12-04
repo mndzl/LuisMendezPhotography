@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Alert from "../Alert";
 
 function Categories() {
   const [categories, setCategories] = useState<any[]>([
