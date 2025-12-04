@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Alert from "../Alert";
 
-function ViewClients() {
+function Clients() {
   const [clients, setClients] = useState<any[]>([
     {
       first_name: "",
@@ -115,7 +115,7 @@ function ViewClients() {
           data-bs-target="#createClientModal"
         >
           <i className="fa-solid fa-plus me-1"></i>
-          Create Client
+          Create
         </button>
 
         {/* Add client modal */}
@@ -214,7 +214,7 @@ function ViewClients() {
                 <div className="modal-controls">
                   <button
                     type="button"
-                    className="btn btn-outline-secondary"
+                    className="btn btn-outline-secondary me-1"
                     data-bs-dismiss="modal"
                   >
                     Cancel
@@ -283,7 +283,7 @@ function ViewClients() {
                     <div className="modal-footer">
                       <button
                         type="button"
-                        className="btn btn-outline-secondary"
+                        className="btn btn-outline-secondary me-1"
                         data-bs-dismiss="modal"
                       >
                         Cancel
@@ -321,4 +321,4 @@ function ViewClients() {
   );
 }
 
-export default ViewClients;
+export default Clients;

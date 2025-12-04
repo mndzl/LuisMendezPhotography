@@ -31,6 +31,11 @@ class ClientRUD(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ClientSerializer
 
 
+class CategoryRUD(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
 class ModelListCreate(generics.ListCreateAPIView):
     queryset = Model.objects.select_related("client", "session")
     serializer_class = ModelSerializer

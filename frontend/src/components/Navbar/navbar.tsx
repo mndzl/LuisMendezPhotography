@@ -73,6 +73,19 @@ function Navbar() {
               Clients
             </Link>
           </li>
+          <li className="nav-item">
+            <Link
+              to="/categories"
+              className={`nav-link ${
+                currentPage.includes("/categories") ? "active" : ""
+              }`}
+              aria-current="page"
+              onClick={() => setCollapsed(true)}
+            >
+              <i className="fa-solid fa-tag me-2"></i>
+              Categories
+            </Link>
+          </li>
           {/* <li className="nav-item">
             <Link
               to="/profile"

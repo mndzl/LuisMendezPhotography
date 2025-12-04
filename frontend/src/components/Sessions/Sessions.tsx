@@ -107,6 +107,8 @@ function Sessions() {
     }
   }
 
+  // TODO: Integrate New Session on Sessions
+
   return (
     <div className="dashboard w-100">
       {/* Main content */}
@@ -114,7 +116,7 @@ function Sessions() {
         <h1>Sessions</h1>
         <Link to="/newsession" className="btn btn-outline-primary">
           <i className="fa-solid fa-plus me-1"></i>
-          Add Session
+          Create
         </Link>
       </div>
 
