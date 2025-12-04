@@ -73,7 +73,7 @@ function Navbar() {
               Clients
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               to="/profile"
               className={`nav-link ${
@@ -85,7 +85,7 @@ function Navbar() {
               <i className="fa-solid fa-user me-2"></i>
               Profile
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>
