@@ -45,8 +45,10 @@ function AddSession() {
       if (!response.ok) throw new Error("Coult not create session.");
 
       const result = await response.json();
-      console.log(result);
-      alert("Session Created.");
+
+      window.location.href = `/sessions/${result.id}`; // Redirect to new session page
+
+      // TODO: display global alert
     } catch (err) {
       console.log(err);
       alert("There was an error creating the session.");

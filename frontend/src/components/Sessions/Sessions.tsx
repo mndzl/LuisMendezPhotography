@@ -125,7 +125,7 @@ function Sessions() {
           data-bs-target="#upcomingSessionsContent"
           aria-controls="upcomingSessionsContent"
           aria-expanded="true"
-          className="btn btn-outline-none fs-3"
+          className="btn btn-outline-none fs-3 p-0 w-100 text-start"
           onClick={() => setCollapsedUpcoming(!collapsedUpcoming)}
         >
           {collapsedUpcoming ? (
@@ -148,7 +148,7 @@ function Sessions() {
           data-bs-target="#previousSessionsContent"
           aria-expanded="false"
           aria-controls="previousSessionsContent"
-          className="btn btn-outline-none fs-3"
+          className="btn btn-outline-none fs-3 p-0 w-100 text-start"
           onClick={() => setCollapsedPrevious(!collapsedPrevious)}
         >
           {collapsedPrevious ? (

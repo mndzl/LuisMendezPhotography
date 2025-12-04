@@ -1,6 +1,6 @@
 main{
     height: 100vh;
-    padding-top: 5em;
+    padding: 3em 0;
     overflow: hidden;
     width: 70%;
 }

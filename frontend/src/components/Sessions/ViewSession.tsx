@@ -97,7 +97,7 @@ function ViewSession() {
     setEditing(false);
     const endpoint = `/api/updatesession/${sessionID}/`;
     try {
-      await fetch(endpoint, {
+      const response = await fetch(endpoint, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -105,11 +105,30 @@ function ViewSession() {
         body: JSON.stringify(session),
       });
 
+      if (!response.ok) throw new Error("Could not update session.");
+
       fetchData();
       createAlert("success", "Session Updated");
     } catch (err) {
       console.log(err);
       createAlert("error", "Could not update the session. Try Again.");
+    }
+  };
+
+  const deleteSession = async () => {
+    const endpoint = `/api/deletesession/${sessionID}/`;
+    try {
+      const response = await fetch(endpoint, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) throw new Error("Could not delete session.");
+
+      window.location.href = "/sessions"; // Redirect to home after deletion
+      // TODO: display global alert
+    } catch (err) {
+      console.log(err);
+      createAlert("error", "There was an error deleting the session.");
     }
   };
 
@@ -138,7 +157,7 @@ function ViewSession() {
         </div>
       ) : (
         // Editing Controls
-        <div className="session-details ">
+        <div className="session-details">
           <div className="editing-control position-absolute top-0 end-0">
             {!editing ? (
               <i
@@ -301,6 +320,59 @@ function ViewSession() {
             ) : (
               <p>{session.location}</p>
             )}
+          </div>
+          <div className="delete-session mt-4">
+            <button
+              className="btn btn-outline-danger"
+              style={{ cursor: "pointer" }}
+              data-bs-toggle="modal"
+              data-bs-target="#deleteSessionModal"
+            >
+              <i className="fa-solid fa-trash-can me-2"></i>
+              Delete Session
+            </button>
+          </div>
+
+          <div
+            className="modal fade"
+            id="deleteSessionModal"
+            aria-labelledby="deleteSessionModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h1 className="modal-title fs-5" id="deleteSessionModalLabel">
+                    Delete Session
+                  </h1>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  Are you sure you want to delete this session?
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={deleteSession}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

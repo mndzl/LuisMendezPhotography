@@ -12,4 +12,6 @@ urlpatterns = [
          name="getModels"),
     path('updatesession/<int:pk>/', views.SessionRUD.as_view(),
          name="updateSession"),
+    path('deletesession/<int:pk>/', views.SessionRUD.as_view(),
+         name="deleteSession"),
 ]
