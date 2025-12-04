@@ -17,7 +17,7 @@ function App() {
     <BrowserRouter>
       <div className="App d-flex w-100">
         <Navbar />
-        <main className="w-80 mx-auto vh-100 overflow-y-scroll">
+        <main className="w-80 mx-auto vh-100 overflow-y-scroll mt-3">
           <Routes>
             <Route path="/sessions" element={<Sessions />} />
             <Route path="/clients" element={<Clients />} />

@@ -173,7 +173,7 @@ function Categories() {
           categories.map((category) => (
             <div
               key={category.id}
-              className="card border rounded-3 mb-2 d-flex justify-content-between flex-row align-items-center shadow-sm"
+              className="card border rounded-3 mb-2 d-flex justify-content-between flex-row align-items-center"
             >
               <div
                 className="modal fade"
