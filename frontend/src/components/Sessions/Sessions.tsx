@@ -113,7 +113,7 @@ function Sessions() {
       <div className="sessions-header d-flex justify-content-between align-items-center mb-4">
         <h1>Sessions</h1>
         <Link to="/newsession" className="btn btn-outline-primary">
-          <i className="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus me-1"></i>
           Add Session
         </Link>
       </div>

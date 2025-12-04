@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/navbar";
 import Sessions from "./components/Sessions/Sessions";
 import NewSession from "./components/Sessions/NewSession";
 import ViewSession from "./components/Sessions/ViewSession";
-import ViewClients from "./components/Clients/ViewClients";
+import Clients from "./components/Clients/Clients";
 import ViewProfile from "./components/Profile/ViewProfile";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
@@ -19,7 +19,7 @@ function App() {
         <main className="w-80 mx-auto vh-100 overflow-y-scroll">
           <Routes>
             <Route path="/sessions" element={<Sessions />} />
-            <Route path="/clients" element={<ViewClients />} />
+            <Route path="/clients" element={<Clients />} />
             <Route path="/profile" element={<ViewProfile />} />
             <Route path="/newsession" element={<NewSession />} />
             <Route path="/sessions/:sessionID" element={<ViewSession />} />

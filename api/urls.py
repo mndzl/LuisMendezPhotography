@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('getsessions/', views.SessionsListCreate.as_view(), name="getSessions"),
     path('newsession/', views.SessionsListCreate.as_view(), name="newSession"),
+    path('newclient/', views.ClientListCreate.as_view(), name="newClient"),
     path('getclients/', views.ClientListCreate.as_view(), name="getClients"),
     path('getcategories/', views.CategoryListCreate.as_view(), name="getCategories"),
     path('getsession/<int:pk>/', views.SessionRUD.as_view(),
@@ -14,4 +15,6 @@ urlpatterns = [
          name="updateSession"),
     path('deletesession/<int:pk>/', views.SessionRUD.as_view(),
          name="deleteSession"),
+    path('deleteclient/<int:pk>/', views.ClientRUD.as_view(),
+         name="deleteClient"),
 ]
