@@ -238,7 +238,7 @@ function Clients() {
           </div>
         </div>
       </div>
-      <div className="clients-list">
+      <div className="clients-list list-group list-group-flush">
         {loading ? (
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
@@ -247,7 +247,7 @@ function Clients() {
           </div>
         ) : (
           clients.map((client) => (
-            <div key={client.id} className="card border rounded-3 mb-2">
+            <div key={client.id} className="p-relative list-group-item p-3">
               <button
                 className="btn delete-client position-absolute top-0 end-0 m-3"
                 data-bs-toggle="modal"
@@ -300,14 +300,14 @@ function Clients() {
                 </div>
               </div>
               <div className="card-body">
-                <h5 className="card-title">
+                <h6 className="card-title">
                   {client.first_name} {client.last_name}
-                </h5>
-                <p className="card-email mb-2 text-body-secondary">
+                </h6>
+                <p className="card-email text-body-secondary mb-0">
                   <i className="fa-solid fa-envelope me-1"></i>
                   {client.email}
                 </p>
-                <p className="card-phone mb-2 text-body-secondary">
+                <p className="card-phone text-body-secondary mb-0">
                   <i className="fa-solid fa-phone me-1"></i>
                   {client.phone_number}
                 </p>
