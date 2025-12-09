@@ -247,10 +247,11 @@ function Sessions() {
               <div className="modal-body">
                 <form>
                   <div className="mb-3">
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="sessionTitle">Title</label>
                     <input
                       type="text"
                       className="form-control"
+                      id="sessionTitle"
                       aria-label="title"
                       name="title"
                       onChange={handleChange}
@@ -259,9 +260,10 @@ function Sessions() {
                     />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="sessionEmail">Description</label>
+                    <label htmlFor="sessionDescription">Description</label>
                     <textarea
                       className="form-control"
+                      id="sessionDescription"
                       onChange={handleChange}
                       value={newSession.description}
                       name="description"
