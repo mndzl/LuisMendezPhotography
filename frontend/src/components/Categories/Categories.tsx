@@ -161,7 +161,7 @@ function Categories() {
           </div>
         </div>
       </div>
-      <div className="categories-list">
+      <div className="categories-list list-group">
         {loading ? (
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
@@ -172,7 +172,7 @@ function Categories() {
           categories.map((category) => (
             <div
               key={category.id}
-              className="card border rounded-3 mb-2 d-flex justify-content-between flex-row align-items-center"
+              className="list-group-item d-flex justify-content-between flex-row align-items-center"
             >
               <div
                 className="modal fade"
