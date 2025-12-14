@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Backlink from "../Backlink";
 import Alert from "../Alert";
 import { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import { format } from "date-fns";
 function ViewSession() {
   const { sessionID } = useParams();
   const [session, setSession] = useState({
+    id: null,
     title: "",
     description: "",
     location: "",
@@ -277,6 +278,11 @@ function ViewSession() {
               </small>
             )}
           </div>
+
+          <Link to={`/gallery/${session.id}`}>
+            <i className="fa-solid fa-link me-1"></i>View Gallery
+          </Link>
+
           <hr className="border opacity-50" />
           {/* Description */}
 
