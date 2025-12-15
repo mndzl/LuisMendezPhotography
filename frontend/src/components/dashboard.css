@@ -1,0 +1,21 @@
+.dashboard-container{
+    height: 100vh;
+    overflow: hidden;
+}
+.dashboard{
+    padding: 2em 0;
+    width: 70%;
+    overflow-y: scroll;
+    scrollbar-width: none;    /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+
+.dashboard::-webkit-scrollbar {
+  display: none;            /* Chrome, Safari, Edge */
+}
+
+@media (max-width:900px) {
+    .dashboard{
+        width: 80%;
+    }
+}
