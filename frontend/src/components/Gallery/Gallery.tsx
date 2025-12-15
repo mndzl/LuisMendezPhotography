@@ -1,4 +1,5 @@
 import Backlink from "../Backlink";
+import Footer from "../Footer/Footer";
 
 function Gallery() {
   return (
@@ -32,7 +33,7 @@ function Gallery() {
               <img
                 src="/sports.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -40,7 +41,7 @@ function Gallery() {
               <img
                 src="/wedding.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>{" "}
@@ -48,7 +49,7 @@ function Gallery() {
               <img
                 src="/wedding.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>{" "}
@@ -56,7 +57,7 @@ function Gallery() {
               <img
                 src="/sports.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -64,7 +65,7 @@ function Gallery() {
               <img
                 src="/sports.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -72,7 +73,7 @@ function Gallery() {
               <img
                 src="/sports.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -80,7 +81,7 @@ function Gallery() {
               <img
                 src="/sports.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -88,7 +89,7 @@ function Gallery() {
               <img
                 src="/wedding.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -96,7 +97,7 @@ function Gallery() {
               <img
                 src="/sports.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -104,13 +105,14 @@ function Gallery() {
               <img
                 src="/wedding.jpeg"
                 alt="Hero Image"
-                className="w-100 h-100"
+                className="w-100 h-100 rounded"
                 style={{ objectFit: "cover" }}
               />
             </div>
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
