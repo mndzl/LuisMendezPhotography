@@ -1,5 +1,6 @@
 import Backlink from "../Backlink";
 import Footer from "../Footer/Footer";
+import "./Gallery.css";
 
 function Gallery() {
   return (
