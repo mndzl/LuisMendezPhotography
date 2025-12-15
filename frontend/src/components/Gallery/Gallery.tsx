@@ -24,7 +24,7 @@ function Gallery() {
           }`}
         ></i>
       </div>
-      <div className="backlink pt-4 ps-3 mb-0">
+      <div className="backlink pt-3 ps-3 mb-0">
         <Backlink color={lightMode ? "#454545ff" : "#ffffffff"} />
       </div>
       <main className="w-100 p-0 h-100 d-flex justify-content-center">
