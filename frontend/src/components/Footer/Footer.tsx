@@ -1,7 +1,13 @@
-function Footer() {
+function Footer({ light = true }) {
   return (
-    <div className="footer bg-light text-center py-3 mt-3">
-      <small className="d-block">Luis Mendez Photography</small>
+    <div
+      className={`footer text-center py-3 mt-3 ${
+        light ? "bg-light" : "bg-dark"
+      }`}
+    >
+      <small className={`d-block ${light ? "" : "text-light"}`}>
+        Luis Mendez Photography
+      </small>
       <small className="d-block text-secondary">
         luis@luismendezphotography | (901) 612-9164
       </small>
