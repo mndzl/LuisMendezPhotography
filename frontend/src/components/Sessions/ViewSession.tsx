@@ -149,7 +149,9 @@ function ViewSession() {
       {alertBox.active && (
         <Alert type={alertBox.type} content={alertBox.content} />
       )}
-      <Backlink />
+      <div className="backlink mb-3">
+        <Backlink />
+      </div>
       {loading ? (
         <div className="d-flex justify-content-center">
           <div className="spinner-border" role="status">

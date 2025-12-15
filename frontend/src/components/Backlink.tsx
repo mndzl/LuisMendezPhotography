@@ -5,7 +5,7 @@ function Backlink({ color = "#454545ff" }) {
     <div className="backlink">
       <Link
         to="/"
-        className="fs-4 d-inline-block mb-3"
+        className="fs-4 d-inline-block mb-0"
         style={{ textDecoration: "None", color: color }}
       >
         <i className="fa-solid fa-angle-left"></i>
