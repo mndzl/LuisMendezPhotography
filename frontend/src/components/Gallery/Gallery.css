@@ -1,3 +1,9 @@
 .gallery{
     font-family: 'Funnel Sans', Arial, Helvetica, sans-serif;
 }
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.75);
+}
+dialog{
+    outline: none;
+}
