@@ -5,7 +5,17 @@ import "./Gallery.css";
 
 function Gallery() {
   const [lightMode, setLightMode] = useState(true);
+  const [gallery, setGallery] = useState({
+    id: -1,
+    title: "",
+  });
   const [selectedImageURL, setSelectedImageURL] = useState(null);
+  const [images, setImages] = useState([
+    {
+      id: -1,
+      url: "",
+    },
+  ]);
   const imageExpandModal = useRef<HTMLDialogElement | null>(null);
 
   const expandImage = (e: React.ChangeEvent<any>) => {
@@ -22,6 +32,51 @@ function Gallery() {
       document.body.style.overflow = "hidden";
     }
   }, [selectedImageURL]);
+
+  const fetchImages = () => {
+    setImages([
+      {
+        id: 1,
+        url: "/sports.jpeg",
+      },
+      {
+        id: 2,
+        url: "/wedding.jpeg",
+      },
+      {
+        id: 3,
+        url: "/sports.jpeg",
+      },
+      {
+        id: 4,
+        url: "/wedding.jpeg",
+      },
+      {
+        id: 5,
+        url: "/sports.jpeg",
+      },
+      {
+        id: 6,
+        url: "/wedding.jpeg",
+      },
+      {
+        id: 7,
+        url: "/wedding.jpeg",
+      },
+      {
+        id: 8,
+        url: "/sports.jpeg",
+      },
+    ]);
+  };
+
+  useEffect(() => {
+    fetchImages();
+    setGallery({
+      id: 1,
+      title: "Lorie & Jean's Wedding",
+    });
+  }, []);
 
   return (
     <div className={`gallery m-0 ${lightMode ? "" : "bg-dark"}`}>
@@ -45,116 +100,41 @@ function Gallery() {
         <Backlink color={lightMode ? "#454545ff" : "#ffffffff"} />
       </div>
       <main className="w-100 p-0 h-100 d-flex justify-content-center">
-        <dialog ref={imageExpandModal} className="w-75 p-0 border-0">
+        <dialog ref={imageExpandModal} className="p-0 border-0 overflow-hidden">
           <button
             className="btn-close position-absolute top-0 end-0 mt-2 me-2 p-2 bg-light border rounded-3"
             onClick={() => setSelectedImageURL(null)}
           ></button>
           {selectedImageURL && (
-            <img src={`${selectedImageURL}`} alt="" className="img-fluid" />
+            <img
+              src={`${selectedImageURL}`}
+              alt=""
+              style={{ maxHeight: "100vh", maxWidth: "80vw" }}
+            />
           )}
         </dialog>
 
         <div className="gallery" style={{ maxWidth: "90%" }}>
           <div className="gallery-info text-center p-0 py-5">
             <h1 className={`m-0 ${lightMode ? "" : "text-light"}`}>
-              Lorie & Jean's Wedding
+              {gallery.title}
             </h1>
             <small className="fs-5 text-secondary">
               Luis Mendez Photography
             </small>
           </div>
           <div className="gallery-grid row g-2 d-flex justify-content-center">
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/sports.jpeg"
-                alt="Hero Image"
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/wedding.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>{" "}
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/wedding.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>{" "}
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/sports.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/sports.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/sports.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/sports.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/wedding.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/sports.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>
-            <div className="gallery-img col-6 col-md-4 col-lg-3">
-              <img
-                src="/wedding.jpeg"
-                alt=""
-                className="w-100 h-100 rounded"
-                style={{ objectFit: "cover", cursor: "pointer" }}
-                onClick={expandImage}
-              />
-            </div>
+            {images.map((image) => (
+              <div className="gallery-img col-6 col-md-4 col-lg-3">
+                <img
+                  src={image.url}
+                  alt={`${gallery.title} image`}
+                  className="w-100 h-100 rounded"
+                  style={{ objectFit: "cover", cursor: "pointer" }}
+                  onClick={expandImage}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </main>
