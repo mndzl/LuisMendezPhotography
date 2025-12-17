@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Backlink from "../Backlink";
 import Footer from "../Footer/Footer";
+import getGallery from "../../firebase/getGallery";
 import "./Gallery.css";
 
 function Gallery() {
@@ -12,7 +13,7 @@ function Gallery() {
   const [selectedImageURL, setSelectedImageURL] = useState(null);
   const [images, setImages] = useState([
     {
-      id: -1,
+      id: "",
       url: "",
     },
   ]);
@@ -20,8 +21,19 @@ function Gallery() {
 
   const expandImage = (e: React.ChangeEvent<any>) => {
     setSelectedImageURL(e.target.src);
-    console.log(e.target.src);
   };
+
+  const toggleLightMode = () => {
+    setLightMode(!lightMode);
+  };
+
+  useEffect(() => {
+    if (lightMode) {
+      document.body.classList.remove("bg-dark");
+    } else {
+      document.body.classList.add("bg-dark");
+    }
+  }, [lightMode]);
 
   useEffect(() => {
     if (!selectedImageURL) {
@@ -33,59 +45,36 @@ function Gallery() {
     }
   }, [selectedImageURL]);
 
-  const fetchImages = () => {
-    setImages([
-      {
-        id: 1,
-        url: "/sports.jpeg",
-      },
-      {
-        id: 2,
-        url: "/wedding.jpeg",
-      },
-      {
-        id: 3,
-        url: "/sports.jpeg",
-      },
-      {
-        id: 4,
-        url: "/wedding.jpeg",
-      },
-      {
-        id: 5,
-        url: "/sports.jpeg",
-      },
-      {
-        id: 6,
-        url: "/wedding.jpeg",
-      },
-      {
-        id: 7,
-        url: "/wedding.jpeg",
-      },
-      {
-        id: 8,
-        url: "/sports.jpeg",
-      },
-    ]);
-  };
-
   useEffect(() => {
+    const fetchImages = async () => {
+      const data = await getGallery();
+      if (!data) {
+        setImages([]);
+      } else {
+        setImages(
+          data.map((img) => ({
+            id: String(img.id),
+            url: String(img.url),
+          }))
+        );
+      }
+      setGallery({
+        id: 1,
+        title: "Lorie & Jean's Wedding",
+      });
+    };
+
     fetchImages();
-    setGallery({
-      id: 1,
-      title: "Lorie & Jean's Wedding",
-    });
   }, []);
 
   return (
-    <div className={`gallery m-0 ${lightMode ? "" : "bg-dark"}`}>
+    <div className={`gallery m-0`}>
       <div
         className={`lightmode p-2 rounded position-fixed end-0 top-0 mt-3 me-3 d-flex flex-row align-items-center ${
           lightMode ? "bg-secondary-subtle" : "bg-secondary"
         }`}
         style={{ cursor: "pointer" }}
-        onClick={() => setLightMode(!lightMode)}
+        onClick={toggleLightMode}
       >
         <p className={`d-block p-0 m-0 me-1 ${lightMode ? "" : "text-light"}`}>
           {lightMode ? "Light" : "Dark"}
@@ -109,7 +98,11 @@ function Gallery() {
             <img
               src={`${selectedImageURL}`}
               alt=""
-              style={{ maxHeight: "100vh", maxWidth: "80vw" }}
+              style={{
+                maxHeight: "100vh",
+                maxWidth: "80vw",
+                objectFit: "cover",
+              }}
             />
           )}
         </dialog>
@@ -125,8 +118,12 @@ function Gallery() {
           </div>
           <div className="gallery-grid row g-2 d-flex justify-content-center">
             {images.map((image) => (
-              <div className="gallery-img col-6 col-md-4 col-lg-3">
+              <div
+                className="gallery-img col-6 col-md-4 col-lg-3"
+                key={image.id}
+              >
                 <img
+                  key={image.id}
                   src={image.url}
                   alt={`${gallery.title} image`}
                   className="w-100 h-100 rounded"
