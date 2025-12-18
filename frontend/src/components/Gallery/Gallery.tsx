@@ -19,7 +19,7 @@ function Gallery() {
       url: "",
     },
   ]);
-  const [selectedImageURL, setSelectedImageURL] = useState(null);
+  const [selectedImageURL, setSelectedImageURL] = useState("");
 
   const imageExpandModal = useRef<HTMLDialogElement | null>(null);
 
@@ -51,7 +51,7 @@ function Gallery() {
 
   const handleEsc = (e: any) => {
     if (e.key == "Escape") {
-      setSelectedImageURL(null);
+      setSelectedImageURL("");
     }
   };
 
@@ -119,10 +119,27 @@ function Gallery() {
               ref={imageExpandModal}
               className="p-0 border-0 overflow-hidden"
             >
-              <button
-                className="btn-close position-absolute top-0 end-0 mt-2 me-2 p-2 bg-light border rounded-3"
-                onClick={() => setSelectedImageURL(null)}
-              ></button>
+              <div className="img-controls position-absolute bg-light border rounded-3 top-0 end-0 mt-2 me-2 d-flex p-2 gap-2">
+                <a
+                  href={`${selectedImageURL.replace(
+                    "/image/upload/",
+                    "/image/upload/fl_attachment/"
+                  )}`}
+                  className="text-secondary"
+                  download
+                >
+                  <i
+                    className="fa-solid fa-arrow-down"
+                    style={{ cursor: "pointer" }}
+                  />
+                </a>
+                <div className="vr" />
+                <button
+                  className="btn-close"
+                  onClick={() => setSelectedImageURL("")}
+                />
+              </div>
+
               {selectedImageURL && (
                 <img
                   src={`${selectedImageURL}`}
@@ -151,7 +168,7 @@ function Gallery() {
               >
                 {images.map((image) => (
                   <div
-                    className="gallery-img col-6 col-md-4 col-lg-3"
+                    className="gallery-img col-6 col-md-4 col-lg-3 position-relative"
                     key={image.id}
                   >
                     <CldImage

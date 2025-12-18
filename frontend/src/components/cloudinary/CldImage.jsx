@@ -10,11 +10,14 @@ const cld = new Cloudinary({
 function CldImage({publicID}) {
     const image = cld.image(publicID);
 
-  return <AdvancedImage 
-            cldImg={image}                 
-            className="w-100 h-100 rounded"
-            style={{ objectFit: "cover", cursor: "pointer" }}
-        />
+  return (
+    <AdvancedImage 
+        cldImg={image}                 
+        className="w-100 h-100 rounded"
+        style={{ objectFit: "cover", cursor: "pointer" }}
+    />
+
+  )
 }
 
 export default CldImage;
