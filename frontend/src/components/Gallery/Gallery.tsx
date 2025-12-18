@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import Backlink from "../Backlink";
 import Footer from "../Footer/Footer";
-import getGallery from "../../firebase/getGallery";
 import "./Gallery.css";
+import CldImage from "../Cloudinary/CldImage";
+import { AdvancedImage } from "@cloudinary/react";
 
 function Gallery() {
   const [lightMode, setLightMode] = useState(true);
@@ -11,12 +12,7 @@ function Gallery() {
     title: "",
   });
   const [selectedImageURL, setSelectedImageURL] = useState(null);
-  const [images, setImages] = useState([
-    {
-      id: "",
-      url: "",
-    },
-  ]);
+
   const imageExpandModal = useRef<HTMLDialogElement | null>(null);
 
   const expandImage = (e: React.ChangeEvent<any>) => {
@@ -45,26 +41,35 @@ function Gallery() {
     }
   }, [selectedImageURL]);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      const data = await getGallery();
-      if (!data) {
-        setImages([]);
-      } else {
-        setImages(
-          data.map((img) => ({
-            id: String(img.id),
-            url: String(img.url),
-          }))
-        );
-      }
-      setGallery({
-        id: 1,
-        title: "Lorie & Jean's Wedding",
-      });
-    };
+  const handleEsc = (e: any) => {
+    if (e.key == "Escape") {
+      setSelectedImageURL(null);
+    }
+  };
 
-    fetchImages();
+  useEffect(() => {
+    // const fetchImages = async () => {
+    //   const data = await getGallery();
+    //   if (!data) {
+    //     setImages([]);
+    //   } else {
+    //     console.log(data);
+    //     setImages(
+    //       data.map((img) => ({
+    //         id: String(img.id),
+    //         url: String(img.url),
+    //       }))
+    //     );
+    //   }
+    //   setGallery({
+    //     id: 1,
+    //     title: "Lorie & Jean's Wedding",
+    //   });
+    // };
+    // const fetchI;
+    // fetchImages();
+
+    window.addEventListener("keydown", handleEsc);
   }, []);
 
   return (
@@ -117,21 +122,30 @@ function Gallery() {
             </small>
           </div>
           <div className="gallery-grid row g-2 d-flex justify-content-center">
-            {images.map((image) => (
+            {/* {images.map((image) => (
               <div
                 className="gallery-img col-6 col-md-4 col-lg-3"
                 key={image.id}
               >
                 <img
-                  key={image.id}
-                  src={image.url}
+                  src={`${image.url}`}
                   alt={`${gallery.title} image`}
                   className="w-100 h-100 rounded"
                   style={{ objectFit: "cover", cursor: "pointer" }}
                   onClick={expandImage}
                 />
               </div>
-            ))}
+            ))} */}
+            <div
+              className="gallery-img col-6 col-md-4 col-lg-3"
+              onClick={expandImage}
+            >
+              <CldImage
+                publicID="150A6841_dwwv7h"
+                className="w-100 h-100 rounded"
+                style={{ objectFit: "cover", cursor: "pointer" }}
+              />
+            </div>
           </div>
         </div>
       </main>
