@@ -5,6 +5,7 @@ import "./Gallery.css";
 import CldImage from "../Cloudinary/CldImage";
 import { AdvancedImage } from "@cloudinary/react";
 import getGallery from "../../firebase/getGallery";
+import { addSeconds } from "date-fns";
 
 function Gallery() {
   const [loading, setLoading] = useState(true);
@@ -20,6 +21,7 @@ function Gallery() {
     },
   ]);
   const [selectedImageURL, setSelectedImageURL] = useState("");
+  const [loadingError, setLoadingError] = useState(false);
 
   const imageExpandModal = useRef<HTMLDialogElement | null>(null);
 
@@ -57,23 +59,30 @@ function Gallery() {
 
   useEffect(() => {
     const fetchImages = async () => {
-      const data = await getGallery();
-      if (!data) {
-        setImages([]);
-      } else {
-        console.log(data);
-        setImages(
-          data.map((img) => ({
-            id: String(img.id),
-            url: String(img.url),
-          }))
-        );
+      try {
+        const data = await getGallery();
+
+        if (!data || data.length == 0) {
+          setImages([]);
+        } else {
+          setImages(
+            data.map((img) => ({
+              id: String(img.id),
+              url: String(img.url),
+            }))
+          );
+        }
+        setGallery({
+          id: 1,
+          title: "Lorie & Jean's Wedding",
+        });
+        setLoadingError(false);
+      } catch (e) {
+        console.log("Network error. Try again.");
+        setLoadingError(true);
+      } finally {
+        setLoading(false);
       }
-      setGallery({
-        id: 1,
-        title: "Lorie & Jean's Wedding",
-      });
-      setLoading(false);
     };
 
     fetchImages();
@@ -88,6 +97,10 @@ function Gallery() {
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
+        </div>
+      ) : loadingError ? (
+        <div className="d-flex w-75 mx-auto text-center justify-content-center vh-100 align-items-center">
+          <span>There was an error loading the page. Please try again.</span>
         </div>
       ) : (
         <div className={`gallery m-0`}>

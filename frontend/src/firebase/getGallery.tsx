@@ -1,12 +1,13 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDocsFromServer } from "firebase/firestore";
 import { db } from "./config";
 
 const getGallery = async () => {
   try {
-    const queryset = await getDocs(collection(db, "images"));
+    const queryset = await getDocsFromServer(collection(db, "images"));
     return queryset.docs.map((doc) => ({ id: doc.id, url: doc.data().url }));
   } catch (e) {
-    console.log(e);
+    console.log("error!");
+    throw e;
   }
 };
 
