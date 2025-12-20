@@ -8,7 +8,10 @@ const cld = new Cloudinary({
 })
 
 function CldImage({publicID}) {
-    const image = cld.image(publicID);
+    const image = cld
+      .image(publicID)
+      .format('auto')
+      .quality('auto');
 
   return (
     <AdvancedImage 

@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "firebase": "^12.7.0"
+  },
+  "devDependencies": {
+    "cloudinary-react": "^1.8.1"
   }
 }
