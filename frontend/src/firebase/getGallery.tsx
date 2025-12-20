@@ -1,4 +1,4 @@
-import { collection, getDocs, getDocsFromServer } from "firebase/firestore";
+import { collection, getDocsFromServer } from "firebase/firestore";
 import { db } from "./config";
 
 const getGallery = async () => {

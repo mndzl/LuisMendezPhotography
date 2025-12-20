@@ -15,9 +15,9 @@ function CldImage({publicID}) {
 
   return (
     <AdvancedImage 
-        cldImg={image}                 
+        cldImg={image}          
         className="w-100 h-100 rounded"
-        style={{ objectFit: "cover", cursor: "pointer" }}
+        style={{ objectFit: "cover", cursor: "pointer" }}       
     />
 
   )

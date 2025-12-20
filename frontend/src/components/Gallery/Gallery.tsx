@@ -184,11 +184,7 @@ function Gallery() {
                     className="gallery-img col-6 col-md-4 col-lg-3 position-relative"
                     key={image.id}
                   >
-                    <CldImage
-                      publicID={image.url}
-                      className="w-100 h-100 rounded"
-                      style={{ objectFit: "cover", cursor: "pointer" }}
-                    />
+                    <CldImage publicID={image.url} />
                   </div>
                 ))}
               </div>
