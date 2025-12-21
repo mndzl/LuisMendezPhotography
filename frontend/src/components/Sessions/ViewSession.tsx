@@ -298,7 +298,7 @@ function ViewSession() {
           </div>
 
           {galleries.map((gallery) => (
-            <Link to={`/gallery/${gallery.id}`}>
+            <Link to={`/gallery/${gallery.id}`} key={gallery.id}>
               <i className="fa-solid fa-link me-1"></i>View Gallery (
               {gallery.client_detail.first_name +
                 " " +
