@@ -37,6 +37,24 @@ class Session(models.Model):
         return f"{self.title} ({self.date.strftime('%b %d')})"
 
 
+class Gallery(models.Model):
+    title = models.CharField(max_length=30, blank=False)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    type = models.CharField(max_length=10)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Galleries"
+
+    def __str__(self):
+        return f"{self.title} ({self.session}) - {self.type} "
+
+
+class Image(models.Model):
+    url = models.CharField(max_length=50, blank=False)
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, blank=False)
+
+
 class Model(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)

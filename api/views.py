@@ -1,7 +1,5 @@
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from base.models import Session, Client, Category, Model
-from .serializers import SessionSerializer, ClientSerializer, CategorySerializer, ModelSerializer
+from base.models import Session, Client, Category, Model, Image, Gallery
+from .serializers import SessionSerializer, ClientSerializer, CategorySerializer, ModelSerializer, ImageSerializer, GallerySerializer
 from rest_framework import generics
 
 
@@ -50,3 +48,13 @@ class ModelListCreate(generics.ListCreateAPIView):
             return Model.objects.filter(session=session)
         else:
             return Model.objects.all()
+
+
+class ImageListCreate(generics.ListCreateAPIView):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
+
+
+class GalleryListCreate(generics.ListCreateAPIView):
+    queryset = Gallery.objects.all()
+    serializer_class = GallerySerializer

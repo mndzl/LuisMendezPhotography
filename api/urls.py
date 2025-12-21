@@ -20,4 +20,12 @@ urlpatterns = [
          name="deleteSession"),
     path('deleteclient/<int:pk>/', views.ClientRUD.as_view(),
          name="deleteClient"),
+    path('getimages/', views.ImageListCreate.as_view(),
+         name="getImages"),
+    path('newimage/<int:public_id>/', views.ImageListCreate.as_view(),
+         name="newImage"),
+    path('getgalleries/', views.GalleryListCreate.as_view(),
+         name="getGalleries"),
+    path('newgallery/<int:public_id>/', views.GalleryListCreate.as_view(),
+         name="newGallery"),
 ]
