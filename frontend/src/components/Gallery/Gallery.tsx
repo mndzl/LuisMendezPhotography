@@ -3,6 +3,7 @@ import Backlink from "../Backlink";
 import Footer from "../Footer/Footer";
 import "./Gallery.css";
 import CldImage from "../Cloudinary/CldImage";
+import UploadWidget from "../cloudinary/UploadWidget";
 import { AdvancedImage } from "@cloudinary/react";
 import getGallery from "../../firebase/getGallery";
 import { addSeconds } from "date-fns";
@@ -31,6 +32,10 @@ function Gallery() {
 
   const toggleLightMode = () => {
     setLightMode(!lightMode);
+  };
+
+  const postImage = (e: React.ChangeEvent<any>) => {
+    console.log(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -168,12 +173,17 @@ function Gallery() {
 
             <div className="gallery" style={{ maxWidth: "90%" }}>
               <div className="gallery-info text-center p-0 py-5">
-                <h1 className={`m-0 ${lightMode ? "" : "text-light"}`}>
-                  {gallery.title}
-                </h1>
-                <small className="fs-5 text-secondary">
-                  Luis Mendez Photography
-                </small>
+                <div className="gallery-heading">
+                  <h1 className={`m-0 ${lightMode ? "" : "text-light"}`}>
+                    {gallery.title}
+                  </h1>
+                  <small className="fs-5 text-secondary">
+                    Luis Mendez Photography
+                  </small>
+                </div>
+                <div className="gallery-add mt-3">
+                  <UploadWidget />
+                </div>
               </div>
               <div
                 className="gallery-grid row g-2 d-flex justify-content-center"
