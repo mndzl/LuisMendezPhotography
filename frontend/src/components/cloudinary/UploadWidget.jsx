@@ -1,6 +1,4 @@
 import {useEffect, useRef, useState} from 'react';
-import { addDoc, collection } from 'firebase/firestore';
-import {db} from '../../firebase/config'
 
 const UploadWidget = () => {
     const [newImagePublicID, setNewImagePublicID] = useState({

@@ -16,12 +16,6 @@ function Sessions() {
   const [collapsedUpcoming, setCollapsedUpcoming] = useState(false);
   const [collapsedPrevious, setCollapsedPrevious] = useState(true);
   const [formError, setFormError] = useState(false);
-  const [galleries, setGalleries] = useState([
-    {
-      id: null,
-      title: "",
-    },
-  ]);
   const [clientsList, setClientsList] = useState([
     {
       id: null,
