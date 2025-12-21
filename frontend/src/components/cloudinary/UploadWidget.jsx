@@ -3,21 +3,30 @@ import { addDoc, collection } from 'firebase/firestore';
 import {db} from '../../firebase/config'
 
 const UploadWidget = () => {
-    const [newImagePublicID, setNewImagePublicID] = useState("");
+    const [newImagePublicID, setNewImagePublicID] = useState({
+        status: '',
+        images: []
+    });
 
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
 
-    const createFirebaseDoc = async() => {
-        const docRef = await addDoc(collection(db, "images"), {
-            url: newImagePublicID,
-        });
-        console.log("created new document ID ", docRef.id);
-    }
+    const createImageInstance = async(public_id) => {
+        const endpoint = '/api/newimage/';
 
-    useEffect(() => {  
-        if(newImagePublicID) createFirebaseDoc();
-    }, [newImagePublicID])
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                url: public_id,
+                gallery: 1,
+            }),
+        });
+        if(!response.ok) throw new Error("Could not create Image Instance");
+
+    }
 
     useEffect(() => {
         cloudinaryRef.current = window.cloudinary;
@@ -26,8 +35,10 @@ const UploadWidget = () => {
             uploadPreset: 'origin_upload',
         }, function(error, result){
             if(result.event == 'success') {
-                console.log(result.info.public_id);
-                setNewImagePublicID(result.info.public_id);
+                createImageInstance(result.info.public_id)
+            }
+            if(result.event == 'close') {
+                window.location.reload(true);
             }
         });
     }, [])
