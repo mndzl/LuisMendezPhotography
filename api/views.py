@@ -54,7 +54,29 @@ class ImageListCreate(generics.ListCreateAPIView):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
 
+    def get_queryset(self):
+        gallery_id = self.kwargs.get("galleryID")
+        if gallery_id:
+            try:
+                gallery = Gallery.objects.get(id=gallery_id)
+            except Gallery.DoesNotExist:
+                return Image.objects.none()
+            return Image.objects.filter(gallery=gallery)
+        else:
+            return Image.objects.all()
+
 
 class GalleryListCreate(generics.ListCreateAPIView):
     queryset = Gallery.objects.all()
     serializer_class = GallerySerializer
+
+    def get_queryset(self):
+        session_id = self.kwargs.get("sessionID")
+        if session_id:
+            try:
+                session = Session.objects.get(id=session_id)
+            except Session.DoesNotExist:
+                return Gallery.objects.none()
+            return Gallery.objects.filter(session=session)
+        else:
+            return Gallery.objects.all()

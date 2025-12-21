@@ -27,7 +27,7 @@ function App() {
         </Route>
 
         {/* Layout not including navbar */}
-        <Route path="/gallery/:sessionID" element={<Gallery />} />
+        <Route path="/gallery/:galleryID" element={<Gallery />} />
 
         {/* Other paths redirect to / */}
         <Route path="*" element={<Navigate to="/" />} />

@@ -6,6 +6,16 @@ import { format } from "date-fns";
 
 function ViewSession() {
   const { sessionID } = useParams();
+  const [galleries, setGalleries] = useState([
+    {
+      id: null,
+      title: "",
+      client_detail: {
+        first_name: "",
+        last_name: "",
+      },
+    },
+  ]);
   const [session, setSession] = useState({
     id: null,
     title: "",
@@ -71,6 +81,12 @@ function ViewSession() {
       const clientsData = await clientsResponse.json();
 
       setClients(clientsData);
+
+      const galleryEndpoint = `/api/getsessiongalleries/${sessionID}`;
+      const galleryResponse = await fetch(galleryEndpoint);
+      const galleryData = await galleryResponse.json();
+
+      setGalleries(galleryData);
     } catch (e) {
       console.log(e);
     } finally {
@@ -281,9 +297,15 @@ function ViewSession() {
             )}
           </div>
 
-          <Link to={`/gallery/${session.id}`}>
-            <i className="fa-solid fa-link me-1"></i>View Gallery
-          </Link>
+          {galleries.map((gallery) => (
+            <Link to={`/gallery/${gallery.id}`}>
+              <i className="fa-solid fa-link me-1"></i>View Gallery (
+              {gallery.client_detail.first_name +
+                " " +
+                gallery.client_detail.last_name}
+              )
+            </Link>
+          ))}
 
           <hr className="border opacity-50" />
           {/* Description */}

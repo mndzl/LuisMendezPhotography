@@ -4,16 +4,19 @@ import Footer from "../Footer/Footer";
 import "./Gallery.css";
 import CldImage from "../Cloudinary/CldImage";
 import UploadWidget from "../cloudinary/UploadWidget";
-import { AdvancedImage } from "@cloudinary/react";
-import getGallery from "../../firebase/getGallery";
-import { addSeconds } from "date-fns";
+import { useParams } from "react-router-dom";
 
 function Gallery() {
+  const { galleryID } = useParams();
   const [loading, setLoading] = useState(true);
   const [lightMode, setLightMode] = useState(true);
   const [gallery, setGallery] = useState({
-    id: -1,
+    id: null,
     title: "",
+    client_detail: {
+      first_name: "",
+      last_name: "",
+    },
   });
   const [images, setImages] = useState([
     {
@@ -32,10 +35,6 @@ function Gallery() {
 
   const toggleLightMode = () => {
     setLightMode(!lightMode);
-  };
-
-  const postImage = (e: React.ChangeEvent<any>) => {
-    console.log(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -63,34 +62,42 @@ function Gallery() {
   };
 
   useEffect(() => {
-    const fetchImages = async () => {
+    const fetchGallery = async () => {
       try {
-        const data = await getGallery();
+        const endpoint = `/api/getgallery/${galleryID}`;
+        const response = await fetch(endpoint);
+        const data = await response.json();
 
-        if (!data || data.length == 0) {
-          setImages([]);
-        } else {
-          setImages(
-            data.map((img) => ({
-              id: String(img.id),
-              url: String(img.url),
-            }))
-          );
-        }
-        setGallery({
-          id: 1,
-          title: "Lorie & Jean's Wedding",
-        });
+        setGallery(data[0]);
         setLoadingError(false);
       } catch (e) {
         console.log("Network error. Try again.");
-        setLoadingError(true);
-      } finally {
-        setLoading(false);
+        throw new Error("network error");
+      }
+    };
+    const fetchImages = async () => {
+      try {
+        const endpoint = `/api/getimages/${galleryID}`;
+        const response = await fetch(endpoint);
+        const data = await response.json();
+
+        setImages(data);
+        setLoadingError(false);
+      } catch (e) {
+        console.log("Network error. Try again.");
+        throw new Error("network error");
       }
     };
 
-    fetchImages();
+    try {
+      fetchGallery();
+      fetchImages();
+    } catch (e) {
+      console.log(e);
+      setLoadingError(true);
+    } finally {
+      setLoading(false);
+    }
 
     window.addEventListener("keydown", handleEsc);
   }, []);
